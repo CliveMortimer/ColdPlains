@@ -10,7 +10,11 @@ signal health_changed(health_value)
 
 var health = 100
 
-const SPEED = 10.0
+var crouch_height = 0.5
+var stand_height = 2.0
+var crouching = false
+
+var SPEED = 10.0
 const JUMP_VELOCITY = 10.0
 const LOOK_SPEED = 5 # Adjust as needed for controller comfort
 
@@ -47,9 +51,26 @@ func _unhandled_input(event):
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
+func crouch():
+	if Input.is_action_pressed("crouch"):
+		crouching = !crouching
+		if crouching:
+			$CollisionShape3D.shape.height = crouch_height
+			$MeshInstance3D.mesh.Height = crouch_height
+		else:
+			$CollisionShape3D.shape.height = stand_height
+			$MeshInstance3D.mesh.Height = stand_height
+
 func _physics_process(delta):
+	
+	crouch()
+	
 	if not is_multiplayer_authority(): return
 	
+	if Input.is_action_pressed("player_run"):
+		SPEED = 15.0
+	else:
+		SPEED = 10.0
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -89,6 +110,7 @@ func _physics_process(delta):
 		anim_player.play("move")
 	else:
 		anim_player.play("idle")
+
 
 	move_and_slide()
 

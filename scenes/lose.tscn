@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://t2uyuire0yg1"]
 
-[node name="Lose" type="Node2D" unique_id=58169483]
+[node name="Lose" type="Node2D"]
 
-[node name="Label" type="Label" parent="." unique_id=1042390864]
+[node name="Label" type="Label" parent="."]
 offset_left = 514.0
 offset_top = 289.0
 offset_right = 583.0
