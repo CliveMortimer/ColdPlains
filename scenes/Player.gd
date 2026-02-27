@@ -21,7 +21,7 @@ const JUMP_VELOCITY = 10.0
 const LOOK_SPEED = 5 # Adjust as needed for controller comfort
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = 20.0
+var gravity = 15.0
 
 func _enter_tree():
 	print(name)
@@ -53,14 +53,21 @@ func _unhandled_input(event):
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
+func _weapon_equips():
+	pass 
+	if Input.is_action_pressed("equip_gun"):
+		pass
 
+	if Input.is_action_pressed("equip_pistol"):
+		pass
+	
 func _physics_process(delta):
 	
 	
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_pressed("player_run"):
-		SPEED = 15.0
+		SPEED = 20.0
 	else:
 		SPEED = 10.0
 	# Add the gravity.

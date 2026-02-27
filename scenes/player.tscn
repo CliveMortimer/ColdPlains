@@ -72,10 +72,25 @@ replication_config = SubResource("SceneReplicationConfig_hn37q")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51306, 0)
 
-[node name="Pistol" parent="Camera3D" instance=ExtResource("2_4esil")]
+[node name="Weapon Management" type="Node3D" parent="Camera3D"]
+
+[node name="Pistol" parent="Camera3D/Weapon Management" instance=ExtResource("2_4esil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Pistol"]
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon Management/Pistol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588368, -0.313209)
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_uu53b")
+draw_pass_1 = SubResource("PlaneMesh_b2g4i")
+
+[node name="TestPistol" parent="Camera3D/Weapon Management" instance=ExtResource("2_4esil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon Management/TestPistol"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588368, -0.313209)
 emitting = false
 amount = 1
