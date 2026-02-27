@@ -53,19 +53,9 @@ func _unhandled_input(event):
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
-func crouch():
-	if Input.is_action_pressed("crouch"):
-		crouching = !crouching
-		if crouching:
-			$CollisionShape3D.shape.height = crouch_height
-			$MeshInstance3D.mesh.Height = crouch_height
-		else:
-			$CollisionShape3D.shape.height = stand_height
-			$MeshInstance3D.mesh.Height = stand_height
 
 func _physics_process(delta):
 	
-	crouch()
 	
 	if not is_multiplayer_authority(): return
 	

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c1j7an8woikyd"]
+[gd_scene load_steps=6 format=3 uid="uid://c1j7an8woikyd"]
 
 [ext_resource type="PackedScene" uid="uid://ckf3250w8jpro" path="res://models/Environment.glb" id="1_p4eel"]
 [ext_resource type="Texture2D" uid="uid://bugwfwhpqfp1n" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="2_d5dl1"]
@@ -13,8 +13,8 @@ uv1_triplanar = true
 albedo_texture = ExtResource("3_tbg6f")
 uv1_triplanar = true
 
-[node name="Environment" unique_id=1851466389 instance=ExtResource("1_p4eel")]
+[node name="Environment" instance=ExtResource("1_p4eel")]
 
-[node name="Plane" parent="." index="0" unique_id=1797027265]
+[node name="Plane" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hlc4h")
 surface_material_override/1 = SubResource("StandardMaterial3D_jylvv")
