@@ -6,9 +6,11 @@ signal health_changed(health_value)
 @onready var anim_player = $AnimationPlayer
 @onready var muzzle_flash = $Camera3D/Pistol/MuzzleFlash
 @onready var raycast = $Camera3D/RayCast3D
+@onready var flashlight = $Camera3D/Hand/SpotLight3D
 @export var enemy_raycast : RayCast3D
 
-var health = 100
+
+var health = 3
 
 var crouch_height = 0.5
 var stand_height = 2.0
@@ -47,7 +49,7 @@ func _unhandled_input(event):
 		play_shoot_effects.rpc()
 		if raycast.is_colliding():
 			var hit_player = raycast.get_collider()
-			hit_player.receive_damage(1).rpc_id(hit_player.get_multiplayer_authority())
+			hit_player.receive_damage().rpc_id(hit_player.get_multiplayer_authority())
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
@@ -78,6 +80,10 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	#Toggle Flashlight 
+	if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlight.visible = not flashlight.visible
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -123,7 +129,7 @@ func play_shoot_effects():
 
 @rpc("any_peer")
 func receive_damage():
-	health -= 10
+	health -= 1
 	health_changed.emit(health)
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/lose.tscn")
