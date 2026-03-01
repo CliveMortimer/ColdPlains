@@ -53,6 +53,8 @@ func _unhandled_input(event):
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
+
+
 func _weapon_equips():
 	pass 
 	if Input.is_action_pressed("equip_gun"):
