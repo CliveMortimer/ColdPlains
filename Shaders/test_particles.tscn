@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c5imnkjguty10"]
+
+[ext_resource type="Shader" uid="uid://bb5oi8dllux5o" path="res://Shaders/test_particle_shader.gdshader" id="1_8plki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qt4oe"]
+shader = ExtResource("1_8plki")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8plki"]
+
+[node name="Particles" type="GPUParticles3D" unique_id=859863746]
+amount = 20
+process_material = SubResource("ShaderMaterial_qt4oe")
+draw_pass_1 = SubResource("SphereMesh_8plki")
