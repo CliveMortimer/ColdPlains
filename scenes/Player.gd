@@ -107,8 +107,8 @@ func play_shoot_effects():
 	muzzle_flash.emitting = true
 
 @rpc("any_peer")
-func receive_damage(amount):
-	health -= amount
+func receive_damage():
+	health -= damage
 	health_changed.emit(health)
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/lose.tscn")
