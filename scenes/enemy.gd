@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
 var SPEED = 3.0
-var can_move = false
+var can_move = true
 var stored_damage : Array
 var seconds_stored = 1
 var damage_taken = 0

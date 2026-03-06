@@ -3,13 +3,8 @@ extends CharacterBody3D
 signal health_changed(health_value)
 
 @onready var camera = $Camera3D
-@onready var anim_player = $AnimationPlayer
-@onready var muzzle_flash = $Camera3D/Weapon_Management/Pistol/MuzzleFlash
-@onready var crazy_muzzle_flash = $Camera3D/Weapon_Management/CrazyPistol/MuzzleFlash 
 @onready var raycast = $Camera3D/RayCast3D
 @onready var flashlight = $Camera3D/Hand/SpotLight3D
-@onready var pistol = $Camera3D/Weapon_Management/Pistol
-@onready var crazy_pistol = $Camera3D/Weapon_Management/CrazyPistol
 @export var enemy_raycast : RayCast3D
 
 
@@ -48,14 +43,8 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 	
-	if Input.is_action_just_pressed("shoot") \
-			and anim_player.current_animation != "shoot":
-		play_shoot_effects.rpc()
-		if raycast.is_colliding():
-			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
-		if enemy_raycast.is_colliding():
-			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
+	if Input.is_action_just_pressed("shoot"):
+		pass
 
 
 
@@ -72,7 +61,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_pressed("player_run"):
-		SPEED = 30.0
+		SPEED = 15.0
 	else:
 		SPEED = 10.0
 	# Add the gravity.
@@ -112,32 +101,7 @@ func _physics_process(delta):
 		# Clamp camera pitch rotation (same as your mouse look code)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
-	if anim_player.current_animation == "shoot":
-		pass
-	elif input_dir != Vector2.ZERO and is_on_floor():
-		anim_player.play("move")
-	else:
-		anim_player.play("idle")
+
 
 
 	move_and_slide()
-
-@rpc("call_local")
-func play_shoot_effects():
-	anim_player.stop()
-	anim_player.play("shoot")
-	muzzle_flash.restart()
-	muzzle_flash.emitting = true
-
-@rpc("any_peer")
-func receive_damage():
-	health -= damage
-	health_changed.emit(health)
-	if health <= 0:
-		get_tree().change_scene_to_file("res://scenes/lose.tscn")
-		#health = 3
-		#position = Vector3.ZERO
-
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "shoot":
-		anim_player.play("idle")
