@@ -73,11 +73,27 @@ replication_config = SubResource("SceneReplicationConfig_hn37q")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51306, 0)
 
-[node name="Pistol" parent="Camera3D" instance=ExtResource("2_4esil")]
+[node name="Weapon_Management" type="Node3D" parent="Camera3D"]
+
+[node name="CrazyPistol" parent="Camera3D/Weapon_Management" instance=ExtResource("4_7ya13")]
+transform = Transform3D(-1.41192e-05, 0, -0.0009999, 0, 0.001, 0, 0.0009999, 0, -1.41192e-05, 0.5, -0.25, -0.715736)
+visible = false
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_Management/CrazyPistol"]
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -574.721, 0.05896, 7.80222)
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_uu53b")
+draw_pass_1 = SubResource("PlaneMesh_b2g4i")
+
+[node name="Pistol" parent="Camera3D/Weapon_Management" instance=ExtResource("2_4esil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Pistol"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588368, -0.313209)
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_Management/Pistol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588369, -0.313209)
 emitting = false
 amount = 1
 lifetime = 0.25
@@ -102,9 +118,5 @@ spot_angle = 16.67
 [node name="EnemyRayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -50)
 collision_mask = 4
-
-[node name="CrazyPistol" parent="Camera3D" instance=ExtResource("4_7ya13")]
-transform = Transform3D(-1.41192e-05, 0, -0.0009999, 0, 0.001, 0, 0.0009999, 0, -1.41192e-05, 0.5, -0.25, -0.715736)
-visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

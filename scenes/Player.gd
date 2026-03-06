@@ -4,9 +4,12 @@ signal health_changed(health_value)
 
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
-@onready var muzzle_flash = $Camera3D/Pistol/MuzzleFlash
+@onready var muzzle_flash = $Camera3D/Weapon_Management/Pistol/MuzzleFlash
+@onready var crazy_muzzle_flash = $Camera3D/Weapon_Management/CrazyPistol/MuzzleFlash 
 @onready var raycast = $Camera3D/RayCast3D
 @onready var flashlight = $Camera3D/Hand/SpotLight3D
+@onready var pistol = $Camera3D/Weapon_Management/Pistol
+@onready var crazy_pistol = $Camera3D/Weapon_Management/CrazyPistol
 @export var enemy_raycast : RayCast3D
 
 
@@ -21,7 +24,7 @@ const JUMP_VELOCITY = 10.0
 const LOOK_SPEED = 5 # Adjust as needed for controller comfort
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = 15.0
+var gravity = 10.0
 
 func _enter_tree():
 	print(name)
@@ -55,11 +58,10 @@ func _unhandled_input(event):
 
 
 
-func _weapon_equips():
-	pass 
+func _weapon_management():
 	if Input.is_action_pressed("equip_gun"):
 		pass
-
+		
 	if Input.is_action_pressed("equip_pistol"):
 		pass
 	
@@ -69,7 +71,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_pressed("player_run"):
-		SPEED = 20.0
+		SPEED = 30.0
 	else:
 		SPEED = 10.0
 	# Add the gravity.
