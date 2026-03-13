@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://xcjrjq5cbn7y"]
+[gd_scene format=3 uid="uid://xcjrjq5cbn7y"]
 
-[ext_resource type="Script" path="res://scenes/Player.gd" id="1_2v3wm"]
+[ext_resource type="Script" uid="uid://byvoccpe1ihl7" path="res://scenes/Player.gd" id="1_2v3wm"]
+[ext_resource type="PackedScene" uid="uid://cf1dcxwv6bvl3" path="res://models/Pistol.glb" id="2_g2els"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
 
@@ -17,46 +18,48 @@ properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemy_raycast")]
+[node name="Player" type="CharacterBody3D" unique_id=1455443136 node_paths=PackedStringArray("enemy_raycast")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_2v3wm")
 enemy_raycast = NodePath("Camera3D/EnemyRayCast3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=614157846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_xk8km")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=931365024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_67y6s")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2019056680]
+autoplay = &"idle"
 playback_default_blend_time = 0.05
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=797675297]
 replication_config = SubResource("SceneReplicationConfig_hn37q")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1681283640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51306, 0)
 
-[node name="Weapon_Management" type="Node3D" parent="Camera3D"]
+[node name="Weapon_Management" type="Node3D" parent="Camera3D" unique_id=827363763]
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="Pistol" parent="Camera3D/Weapon_Management" unique_id=208872495 instance=ExtResource("2_g2els")]
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1294429055]
 target_position = Vector3(0, 0, -50)
 collision_mask = 2
 
-[node name="Hand" type="Node3D" parent="Camera3D"]
+[node name="Hand" type="Node3D" parent="Camera3D" unique_id=2066509449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51306, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/Hand"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/Hand" unique_id=1436492692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19077, 0)
 shadow_enabled = true
 spot_range = 9.259
 spot_angle = 16.67
 
-[node name="EnemyRayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="EnemyRayCast3D" type="RayCast3D" parent="Camera3D" unique_id=84777146]
 target_position = Vector3(0, 0, -50)
 collision_mask = 4
 
