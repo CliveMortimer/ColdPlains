@@ -1,29 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://5k1o5ctvtah6"]
+[gd_scene format=3 uid="uid://5k1o5ctvtah6"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_phvpf"]
+[ext_resource type="Script" uid="uid://f4pnbc3ykgbk" path="res://scenes/enemy.gd" id="1_phvpf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_an04p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkvtw"]
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("dps_label") groups=["enemy"]]
+[node name="Enemy" type="CharacterBody3D" unique_id=509544224 node_paths=PackedStringArray("dps_label") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_phvpf")
 dps_label = NodePath("DPSLabel")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=994554542]
 mesh = SubResource("CapsuleMesh_an04p")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2040109617]
 wait_time = 2.0
 autostart = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=506590110]
 shape = SubResource("CapsuleShape3D_bkvtw")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2006510705]
 
-[node name="DPSLabel" type="Label3D" parent="."]
+[node name="DPSLabel" type="Label3D" parent="." unique_id=1074584573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22017, 0)
 billboard = 1

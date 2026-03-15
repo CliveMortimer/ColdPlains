@@ -56,6 +56,7 @@ func _unhandled_input(event):
 		play_shoot_effects.rpc()
 		if raycast.is_colliding(): 
 			if CollisionShape3D:
+				
 				print("I hit you")
 				var hit_player = raycast.get_collider()
 				hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
