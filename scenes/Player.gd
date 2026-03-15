@@ -54,11 +54,11 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot") \
 			and anim_player.current_animation != "shoot":
 		play_shoot_effects.rpc()
-		
 		if raycast.is_colliding(): 
-			print("I hit you")
-			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+			if CollisionShape3D:
+				print("I hit you")
+				var hit_player = raycast.get_collider()
+				hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
 		if enemy_raycast.is_colliding():
 			enemy_raycast.get_collider().damage_taken += 1 #replace with signals later
 
@@ -92,11 +92,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("swap_to_toy_gun"):
 		pistol.hide()
 		toygun.show()
+		damage = 15
 	else:
 		pass
 	if Input.is_action_just_pressed("swap_to_pistol"):
 		toygun.hide()
 		pistol.show()
+		damage = 10
 	# Update slide
 	if is_sliding:
 		slide_timer += delta

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://byvoccpe1ihl7" path="res://scenes/Player.gd" id="1_2v3wm"]
 [ext_resource type="PackedScene" uid="uid://cf1dcxwv6bvl3" path="res://models/Pistol.glb" id="2_4esil"]
 [ext_resource type="Texture2D" uid="uid://vwob30tkwej4" path="res://addons/kenney_particle_pack/star_06.png" id="3_27dhu"]
+[ext_resource type="PackedScene" uid="uid://bgj4anlpp5oq4" path="res://models/toy_gun.glb" id="4_dqkch"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
 
@@ -18,7 +19,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/path = NodePath("Camera3D/Weapon_management/Pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Pistol:rotation")
+tracks/1/path = NodePath("Camera3D/Weapon_management/Pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +48,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/path = NodePath("Camera3D/Weapon_management/Pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +64,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/path = NodePath("Camera3D/Weapon_management/Pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,7 +76,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Pistol:rotation")
+tracks/1/path = NodePath("Camera3D/Weapon_management/Pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -158,10 +159,12 @@ replication_config = SubResource("SceneReplicationConfig_hn37q")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1853814499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51306, 0)
 
-[node name="Pistol" parent="Camera3D" unique_id=945160158 instance=ExtResource("2_4esil")]
+[node name="Weapon_management" type="Node3D" parent="Camera3D" unique_id=47297196]
+
+[node name="Pistol" parent="Camera3D/Weapon_management" unique_id=945160158 instance=ExtResource("2_4esil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Pistol" unique_id=215553547]
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Pistol" unique_id=215553547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588368, -0.313209)
 emitting = false
 amount = 1
@@ -171,6 +174,13 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
+[node name="ToyGun" parent="Camera3D/Weapon_management" unique_id=986895878 instance=ExtResource("4_dqkch")]
+transform = Transform3D(-5.9341282e-06, 0, -0.0009999825, 0, 0.001, 0, 0.0009999825, 0, -5.9341282e-06, 0.49574766, -0.25474918, -0.50957096)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D/Weapon_management" unique_id=1804038237]
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
+
 [node name="Hand" type="Node3D" parent="Camera3D" unique_id=1826501949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51306, 0)
 
@@ -179,10 +189,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1907651, 0)
 shadow_enabled = true
 spot_range = 9.259
 spot_angle = 16.67
-
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1804038237]
-target_position = Vector3(0, 0, -50)
-collision_mask = 2
 
 [node name="EnemyRayCast3D" type="RayCast3D" parent="Camera3D" unique_id=890706288]
 target_position = Vector3(0, 0, -50)
