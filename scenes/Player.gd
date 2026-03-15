@@ -4,8 +4,10 @@ signal health_changed(health_value)
 
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
-@onready var muzzle_flash = $Camera3D/Pistol/MuzzleFlash
-@onready var raycast = $Camera3D/RayCast3D
+@onready var pistol = $Camera3D/Weapon_management/Pistol
+@onready var toygun = $Camera3D/Weapon_management/ToyGun
+@onready var muzzle_flash = $Camera3D/Weapon_management/Pistol/MuzzleFlash
+@onready var raycast = $Camera3D/Weapon_management/RayCast3D
 @onready var flashlight = $Camera3D/Hand/SpotLight3D
 @export var enemy_raycast : RayCast3D
 @export var walk_speed: float = 5.0
@@ -19,9 +21,9 @@ var slide_timer: float = 0.0
 var health = 100
 var damage = 10
 
-const SPEED = 10.0
+var SPEED = 10.0
 const JUMP_VELOCITY = 10.0
-const LOOK_SPEED = 5 # Adjust as needed for controller comfort
+const LOOK_SPEED = 6.7 # Adjust as needed for controller comfort
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 20.0
@@ -35,7 +37,9 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
-	
+	toygun.hide()
+	pistol.hide()
+
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -50,7 +54,9 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot") \
 			and anim_player.current_animation != "shoot":
 		play_shoot_effects.rpc()
-		if raycast.is_colliding():
+		
+		if raycast.is_colliding(): 
+			print("I hit you")
 			var hit_player = raycast.get_collider()
 			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
 		if enemy_raycast.is_colliding():
@@ -67,6 +73,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
+	if Input.is_action_just_pressed("player_run"):
+		SPEED = 20.0
+	else:
+		SPEED = 10.0
 	#Toggle Flashlight 
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlight.visible = not flashlight.visible
@@ -77,7 +87,16 @@ func _physics_process(delta):
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction != Vector3.ZERO and not is_sliding:
 			start_slide(direction)
-
+			
+	
+	if Input.is_action_just_pressed("swap_to_toy_gun"):
+		pistol.hide()
+		toygun.show()
+	else:
+		pass
+	if Input.is_action_just_pressed("swap_to_pistol"):
+		toygun.hide()
+		pistol.show()
 	# Update slide
 	if is_sliding:
 		slide_timer += delta
