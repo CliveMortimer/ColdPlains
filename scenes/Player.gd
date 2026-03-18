@@ -14,18 +14,15 @@ signal health_changed(health_value)
 @export var slide_speed: float = 20.0
 @export var slide_duration: float = 0.5
 @export var slide_friction: float = 0.95
-
 var is_sliding: bool = false
 var slide_timer: float = 0.0
-
 var health = 100
 var damage = 10
-
 var SPEED = 10.0
+var current_weapon
 const JUMP_VELOCITY = 10.0
 const LOOK_SPEED = 6.7 # Adjust as needed for controller comfort
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+# Get the gravity from the project settings to be synced with RigidBody nodes. 
 var gravity = 20.0
 
 func _enter_tree():
@@ -35,10 +32,11 @@ func _enter_tree():
 func _ready():
 	if not is_multiplayer_authority(): return
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	camera.current = true
 	toygun.hide()
 	pistol.hide()
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera.current = true
 
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -54,10 +52,9 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot") \
 			and anim_player.current_animation != "shoot":
 		play_shoot_effects.rpc()
-		if raycast.is_colliding(): 
-			if CollisionShape3D:
-				
-				print("I hit you")
+		if raycast.is_colliding():
+			if is_in_group("enemy"): 
+				print("I hit an enemy")
 				var hit_player = raycast.get_collider()
 				hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
 		if enemy_raycast.is_colliding():
@@ -74,10 +71,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if Input.is_action_just_pressed("player_run"):
-		SPEED = 20.0
-	else:
-		SPEED = 10.0
 	#Toggle Flashlight 
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlight.visible = not flashlight.visible
@@ -93,13 +86,15 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("swap_to_toy_gun"):
 		pistol.hide()
 		toygun.show()
-		damage = 15
-	else:
-		pass
+		current_weapon = toygun
+		if toygun:
+			pass
 	if Input.is_action_just_pressed("swap_to_pistol"):
 		toygun.hide()
 		pistol.show()
-		damage = 10
+		current_weapon = pistol
+		if pistol:
+			pass
 	# Update slide
 	if is_sliding:
 		slide_timer += delta
