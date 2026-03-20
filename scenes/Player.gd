@@ -70,7 +70,16 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
+	
+	if Input.is_action_just_pressed("swap_to_toy_gun"):
+		pistol.hide() #changes the visibility of the weapon though it hasn't stopped its functionality
+		toygun.show() #makes it visible
+		current_weapon = toygun #A variable in order to swap between functionality of the weapons
+	if Input.is_action_just_pressed("swap_to_pistol"):
+		toygun.hide() 
+		pistol.show()
+		current_weapon = pistol
+	
 	#Toggle Flashlight 
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlight.visible = not flashlight.visible
@@ -83,18 +92,6 @@ func _physics_process(delta):
 			start_slide(direction)
 			
 	
-	if Input.is_action_just_pressed("swap_to_toy_gun"):
-		pistol.hide()
-		toygun.show()
-		current_weapon = toygun
-		if toygun:
-			pass
-	if Input.is_action_just_pressed("swap_to_pistol"):
-		toygun.hide()
-		pistol.show()
-		current_weapon = pistol
-		if pistol:
-			pass
 	# Update slide
 	if is_sliding:
 		slide_timer += delta
@@ -129,6 +126,9 @@ func _physics_process(delta):
 		anim_player.play("idle")
 
 	move_and_slide()
+
+func weapon_management():
+	pass
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "shoot":
