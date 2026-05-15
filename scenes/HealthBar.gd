@@ -23,19 +23,12 @@ func _ready():
 	player.health_changed.connect(_on_health_changed)
 	print("Connected to health_changed signal")
 	
-	# Set label text color to white
-	health_label.add_theme_color_override("font_color", Color.WHITE)
+	# Set up the ProgressBar
+	health_label.min_value = 0
+	health_label.max_value = 100
+	health_label.value = player.health
 	
-	# Set label background to green
-	var panel_style = StyleBoxFlat.new()
-	panel_style.bg_color = Color.GREEN
-	panel_style.set_corner_radius_all(5)
-	panel_style.set_content_margin_all(10)
-	health_label.add_theme_stylebox_override("normal", panel_style)
-	
-	# Set initial value
-	health_label.text = str(player.health) + " / 100"
-	print("Initial health label text set to:", health_label.text)
+	print("Initial health bar value set to:", health_label.value)
 	print("HealthBar setup complete!")
 
 
@@ -48,6 +41,6 @@ func _on_health_changed(new_health):
 		print("ERROR: health_label is null!")
 		return
 	
-	health_label.text = str(new_health) + " / 100"
-	print("Health label text updated to:", health_label.text)
-	print("Health label visible:", health_label.visible)
+	health_label.value = new_health
+	print("Health bar value updated to:", health_label.value)
+	print("Health bar visible:", health_label.visible)
