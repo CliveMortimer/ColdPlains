@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgj4anlpp5oq4" path="res://Models/toy_gun.glb" id="4_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://d4jwmgrgu53l6" path="res://Models/low-poly_imi_uzi.glb" id="5_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://3tk255sadi0p" path="res://Models/low-poly_akm.glb" id="6_fjrip"]
+[ext_resource type="PackedScene" uid="uid://eroiq48wv3v1" path="res://Models/remington_870_shotgun.glb" id="7_smehm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
 
@@ -567,6 +568,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51306, 0)
 
 [node name="Pistol" parent="Camera3D/Weapon_management" unique_id=945160158 instance=ExtResource("2_4esil")]
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.5, -0.25, -0.5)
+visible = false
 
 [node name="PMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Pistol" unique_id=215553547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0588368, -0.313209)
@@ -580,9 +582,11 @@ draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="toygun" parent="Camera3D/Weapon_management" unique_id=145908076 instance=ExtResource("4_qlg0r")]
 transform = Transform3D(-2.1664039e-11, 0, -0.00054015644, 0, 0.00050341495, 0, 0.0004956154, 0, -2.3610988e-11, 0.522, -0.16, -0.55)
+visible = false
 
 [node name="Uzi" parent="Camera3D/Weapon_management" unique_id=488215013 instance=ExtResource("5_tuyoq")]
 transform = Transform3D(-5.2453664e-10, 0, 0.011999998, 0, 0.011999999, 0, -0.011999999, 0, -5.245366e-10, 0.55820125, -0.20862663, -0.51259923)
+visible = false
 
 [node name="UMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Uzi" unique_id=1450434305]
 transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 28.753956, 2.7522964, 0.71746445)
@@ -595,7 +599,7 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
-transform = Transform3D(-8.74228e-11, 0, 0.002, 0, 0.0020000006, 0, -0.0020000006, 0, -8.742278e-11, 0.54466105, -0.28565192, -0.6687403)
+transform = Transform3D(-6.489101e-11, 0, 0.001916012, 0, 0.0016090325, 0, -0.0014845333, 0, -8.375155e-11, 0.54466105, -0.28565192, -0.6687403)
 
 [node name="RMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Rifle" unique_id=522729273]
 transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 476.34375, 54.921143, 0.7175293)
@@ -631,6 +635,19 @@ spot_range = 100.0
 spot_angle = 20.0
 spot_angle_attenuation = 0.85
 
+[node name="Shotgun" parent="Camera3D/Weapon_management" unique_id=1245742429 instance=ExtResource("7_smehm")]
+transform = Transform3D(-0.016585339, 0, 1.2998942, 0, 1.2999998, 0, -1.2998942, 0, -0.016585339, 0.5250223, -0.015731573, -0.5161731)
+
+[node name="SMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Shotgun" unique_id=1661589902]
+transform = Transform3D(1, 0, -1.8626451e-09, 0, 0.9999999, 0, 1.8626451e-09, 0, 1, 0.60566866, 0.0588367, -0.003616482)
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_uu53b")
+draw_pass_1 = SubResource("PlaneMesh_b2g4i")
+
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1804038237]
 target_position = Vector3(0, 0, -50)
 collision_mask = 2
@@ -646,10 +663,10 @@ collision_mask = 15
 [node name="Camera3D_Pistol#Hand" type="Node3D" parent="." unique_id=1826501949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1.26306, 0.5)
 
-[node name="Camera3D_Pistol_Hand#Flashlight" type="Node3D" parent="." unique_id=34318359]
+[node name="Camera3D_Pistol_Hand#Flashlight" type="Node3D" parent="." unique_id=214209139]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54521567, 1.2140862, -0.7501054)
 
-[node name="Camera3D_Pistol_Hand_Flashlight#LightWide" type="SpotLight3D" parent="." unique_id=2029540740]
+[node name="Camera3D_Pistol_Hand_Flashlight#LightWide" type="SpotLight3D" parent="." unique_id=1569672464]
 light_color = Color(0.34509805, 0.627451, 1, 1)
 light_energy = 1.4
 light_specular = 2.0
@@ -660,7 +677,7 @@ spot_attenuation = 0.75
 spot_angle = 50.0
 spot_angle_attenuation = 3.0
 
-[node name="Camera3D_Pistol_Hand_Flashlight#LightNarrow" type="SpotLight3D" parent="." unique_id=1284004865]
+[node name="Camera3D_Pistol_Hand_Flashlight#LightNarrow" type="SpotLight3D" parent="." unique_id=1540971767]
 light_color = Color(0.7882353, 0.654902, 1, 1)
 light_energy = 2.0
 light_specular = 4.0
