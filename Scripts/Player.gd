@@ -2,16 +2,16 @@ extends CharacterBody3D
 
 signal health_changed(health_value)
 
-@onready var collision_shape = $CollisionShape3D
-@onready var pistol = $Camera3D/Weapon_management/Pistol
-@onready var toygun = $Camera3D/Weapon_management/toygun
-@onready var uzi = $Camera3D/Weapon_management/Uzi
-@onready var Uzi_muzzle_flash = $Camera3D/Weapon_management/Uzi/UMuzzleFlash
-@onready var rifle = $Camera3D/Weapon_management/Rifle
-@onready var rifle_muzzle_flash = $Camera3D/Weapon_management/Rifle/RMuzzleFlash
+@export var collision_shape : CollisionShape3D
+@export var pistol : Node3D
+@export var pistol_muzzle_flash : GPUParticles3D
+@export var toygun : Node3D
+@export var uzi : Node3D
+@export var Uzi_muzzle_flash : GPUParticles3D
+@export var rifle : Node3D
+@export var rifle_muzzle_flash : GPUParticles3D
 @export var camera : Camera3D
 @export var anim_player : AnimationPlayer
-@export var muzzle_flash : GPUParticles3D
 @export var raycast : RayCast3D
 @export var flashlight : Node3D
 @export var enemy_raycast : RayCast3D
@@ -96,6 +96,11 @@ func _unhandled_input(event):
 		play_shoot_effects.rpc()
 		perform_shooting_logic()
 
+	if Input.is_action_just_pressed("capture_toggle") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif Input.is_action_just_pressed("capture_toggle"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	elif Input.is_action_just_released("shoot"):
 		is_shooting = false
 
@@ -171,17 +176,17 @@ func _physics_process(delta):
 	move_and_slide()
 
 func perform_shooting_logic():
-		if raycast.is_colliding():
-			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc()
-		if enemy_raycast.is_colliding():
-			enemy_raycast.get_collider().damage_taken += damage
-		if particle_raycast.is_colliding():
-			var hit_explosion = hit_explosion_scene.instantiate()
-			var pos = particle_raycast.get_collision_point()
-			var norm = particle_raycast.get_collision_normal()
-			hit_explosion.look_at_from_position(pos, norm + pos)
-			get_parent().add_child(hit_explosion)
+	if raycast.is_colliding():
+		var hit_player = raycast.get_collider()
+		hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+	if enemy_raycast.is_colliding():
+		enemy_raycast.get_collider().damage_taken += damage
+	if particle_raycast.is_colliding():
+		var hit_explosion = hit_explosion_scene.instantiate()
+		var pos = particle_raycast.get_collision_point()
+		var norm = particle_raycast.get_collision_normal()
+		hit_explosion.look_at_from_position(pos, norm + pos)
+		get_parent().add_child(hit_explosion)
 
 func switch_weapons(selected_weapon):
 	#Hide all weapons
@@ -212,9 +217,9 @@ func start_slide(direction: Vector3) -> void:
 @rpc("call_local")
 func play_shoot_effects():
 	if current_weapon == pistol:
-		if muzzle_flash:
-			muzzle_flash.restart()
-			muzzle_flash.emitting = true
+		if pistol_muzzle_flash:
+			pistol_muzzle_flash.restart()
+			pistol_muzzle_flash.emitting = true
 		else:
 			print("Muzzle flash for pistol is null")
 	elif current_weapon == uzi:
