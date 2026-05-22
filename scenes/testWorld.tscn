@@ -4,10 +4,13 @@
 [ext_resource type="Shader" uid="uid://dt16hl6yx6fkq" path="res://Shaders/sky_shader_test.gdshader" id="2_myy55"]
 [ext_resource type="Texture2D" uid="uid://8ka2ui7sq36p" path="res://addons/kenney_particle_pack/circle_05.png" id="3_hbot1"]
 [ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://scenes/enemy.tscn" id="3_nule3"]
+[ext_resource type="Shader" uid="uid://6hnee2nqrnlq" path="res://Shaders/BlurX.gdshader" id="4_lwfgy"]
 [ext_resource type="Shader" uid="uid://d4b1lwb78qlx0" path="res://Shaders/pixelation.gdshader" id="4_rucky"]
 [ext_resource type="Shader" uid="uid://bxknks8pnlto5" path="res://Shaders/quantization.gdshader" id="5_0ddhe"]
+[ext_resource type="Shader" uid="uid://unoisuf3immv" path="res://Shaders/BlurY.gdshader" id="5_r1245"]
 [ext_resource type="PackedScene" uid="uid://cvnpwobudpc3m" path="res://scenes/Test_environment.tscn" id="5_rucky"]
 [ext_resource type="PackedScene" uid="uid://t2uyuire0yg1" path="res://scenes/lose.tscn" id="7_rucky"]
+[ext_resource type="Shader" uid="uid://4hqoggbx15ju" path="res://Shaders/static.gdshader" id="8_ftq4a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_myy55"]
 noise_type = 2
@@ -43,6 +46,43 @@ bg_color = Color(1, 0.117647, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmecq"]
 bg_color = Color(0.00392157, 1, 0, 1)
 
+[sub_resource type="Shader" id="Shader_8b5ia"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec3 col;
+	//vec3 depth = textureLod(NORMAL_TEXTURE, SCREEN_UV, 0.0).xyz;
+	vec3 depth = vec3(NORMAL_MAP_DEPTH);
+	col = depth;
+	COLOR.rgb = col;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbplf"]
+shader = SubResource("Shader_8b5ia")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1245"]
+shader = ExtResource("4_lwfgy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftq4a"]
+shader = ExtResource("5_r1245")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8b5ia"]
+shader = ExtResource("8_ftq4a")
+shader_parameter/ratio = 0.1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rucky"]
 shader = ExtResource("4_rucky")
 shader_parameter/screen_ratio = Vector2i(16, 9)
@@ -53,7 +93,7 @@ shader_parameter/ratio = 0.4
 shader = ExtResource("5_0ddhe")
 shader_parameter/levels = 6.0
 shader_parameter/colamt = 7.0
-shader_parameter/ratio = 0.4
+shader_parameter/ratio = 0.5
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ddhe"]
 vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
@@ -66,8 +106,9 @@ main_level = NodePath("NavigationRegion3D")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1539882701]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 light_energy = 0.0
+light_negative = true
 shadow_enabled = true
-shadow_blur = 6.0
+shadow_blur = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1553380858]
 environment = SubResource("Environment_6knbf")
@@ -147,6 +188,7 @@ texture = ExtResource("3_hbot1")
 stretch_mode = 5
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=1636075687]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,11 +206,61 @@ value = 3.0
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/HUD/HealthBar" unique_id=1914952725]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Shaders" type="Node" parent="CanvasLayer/HUD" unique_id=1018482066]
+
+[node name="Outline" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1961721255]
+layer = 0
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Outline" unique_id=1054672684]
+material = SubResource("ShaderMaterial_dbplf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlurX" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1038228366]
+layer = 0
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/BlurX" unique_id=552093582]
+material = SubResource("ShaderMaterial_r1245")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BlurY" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2090503725]
+layer = 0
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/BlurY" unique_id=1800802096]
+material = SubResource("ShaderMaterial_ftq4a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Scanlines" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1599022502]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Scanlines" unique_id=533011964]
+material = SubResource("ShaderMaterial_8b5ia")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Pixelation" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1065358867]
 layer = 0
@@ -181,10 +273,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2104843488]
+[node name="Quantization" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2104843488]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/CanvasLayer" unique_id=439815265]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Quantization" unique_id=439815265]
 material = SubResource("ShaderMaterial_lwfgy")
 anchors_preset = 15
 anchor_right = 1.0

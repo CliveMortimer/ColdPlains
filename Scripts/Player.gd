@@ -16,6 +16,7 @@ signal health_changed(health_value)
 @export var flashlight : Node3D
 @export var enemy_raycast : RayCast3D
 @export var particle_raycast : RayCast3D
+
 @export var walk_speed: float = 5.0
 @export var slide_speed: float = 20.0
 @export var slide_duration: float = 0.5
@@ -186,6 +187,7 @@ func perform_shooting_logic():
 		var pos = particle_raycast.get_collision_point()
 		var norm = particle_raycast.get_collision_normal()
 		hit_explosion.look_at_from_position(pos, norm + pos)
+		hit_explosion.setup_particles(damage) #damage for this function should be replaced with damage from the current weapon
 		get_parent().add_child(hit_explosion)
 
 func switch_weapons(selected_weapon):
@@ -204,9 +206,6 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "shoot":
 		can_shoot = true  # Allow shooting again only when shoot animation finishes
 		anim_player.play("idle")  # Transition to idle after shooting
-
-
-
 
 func start_slide(direction: Vector3) -> void:
 	is_sliding = true
@@ -243,12 +242,10 @@ func receive_damage():
 	if is_dead:
 		print("Player is already dead, ignoring damage")
 		return
-
 	health -= damage
 	print("Health reduced to:", health)
 	health_changed.emit(health)
 	print("health_changed signal emitted with value:", health)
-	
 	if health <= 0:
 		print("Player dead, calling die()")
 		is_dead = true
@@ -267,16 +264,13 @@ func _handle_crouch(delta) -> void:
 	$CollisionShape3D.shape.height = stand_height - CROUCH_TRANSLATE if is_crouched else stand_height
 	$CollisionShape3D.position.y = $CollisionShape3D.shape.height / 2
 
-
 @rpc("authority", "call_local")
 func die():
-	if is_dead:
-		return
+	#if is_dead:
+		#return
 	velocity = Vector3.ZERO
 	set_process(false)
 	set_physics_process(false)
 	hide()
-	$CollisionShape3D.disabled = true
-	
 	if is_multiplayer_authority():
 		get_tree().call_group("ui","show_lose_screen")

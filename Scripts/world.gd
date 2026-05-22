@@ -3,7 +3,7 @@ extends Node
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
-@onready var health_bar = $CanvasLayer/HUD/HealthBar
+#@onready var health_bar = $CanvasLayer/HUD/HealthBar
 @onready var Player = preload("res://scenes/player.tscn")
 @onready var test_level_scene = preload("res://scenes/test_level.tscn")
 @export var main_level : NavigationRegion3D
@@ -99,8 +99,8 @@ func remove_player(peer_id):
 
 
 func update_health_bar(health_value):
-	health_bar.value = health_value
-	
+	#health_bar.value = health_value
+	var i=0
 
 
 func _on_test_level_button_pressed() -> void:

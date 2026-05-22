@@ -222,13 +222,10 @@ material = SubResource("StandardMaterial3D_nwvuf")
 radial_segments = 6
 rings = 3
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_nwvuf"]
-radius = 0.05
-height = 1.26
-
-[node name="HitExplosion" type="Node3D" unique_id=95958684 node_paths=PackedStringArray("smoke_timer", "hole", "impact", "explosion", "sphere", "smoke")]
+[node name="HitExplosion" type="Node3D" unique_id=95958684 node_paths=PackedStringArray("smoke_timer", "delete_timer", "hole", "impact", "explosion", "sphere", "smoke")]
 script = ExtResource("1_iopyt")
 smoke_timer = NodePath("SmokeTimer")
+delete_timer = NodePath("DeleteTimer")
 hole = NodePath("Rotation/Hole")
 impact = NodePath("Rotation/Impact")
 explosion = NodePath("Rotation/Explosion")
@@ -238,12 +235,10 @@ smoke = NodePath("Rotation/Smoke")
 [node name="DeleteTimer" type="Timer" parent="." unique_id=2147192100]
 wait_time = 30.0
 one_shot = true
-autostart = true
 
 [node name="SmokeTimer" type="Timer" parent="." unique_id=566843748]
 wait_time = 25.0
 one_shot = true
-autostart = true
 
 [node name="Rotation" type="Node3D" parent="." unique_id=1621546663]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -287,10 +282,6 @@ draw_pass_1 = SubResource("SphereMesh_huduw")
 [node name="Hole" type="Decal" parent="Rotation" unique_id=1766357118]
 size = Vector3(1, 0.66, 0.66)
 texture_albedo = ExtResource("2_nwvuf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rotation" unique_id=2046664789]
-visible = false
-mesh = SubResource("CapsuleMesh_nwvuf")
 
 [connection signal="timeout" from="DeleteTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SmokeTimer" to="." method="_on_smoke_timer_timeout"]
