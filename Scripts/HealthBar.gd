@@ -44,3 +44,4 @@ func _on_health_changed(new_health):
 	health_label.value = new_health
 	print("Health bar value updated to:", health_label.value)
 	print("Health bar visible:", health_label.visible)
+ 
