@@ -667,6 +667,16 @@ collision_mask = 4
 target_position = Vector3(0, 0, -50)
 collision_mask = 15
 
+[node name="FogVolume" type="FogVolume" parent="Camera3D" unique_id=1553434094]
+size = Vector3(16, 16, 16)
+shape = 0
+material = SubResource("FogMaterial_fjrip")
+
+[node name="FogVolume2" type="FogVolume" parent="Camera3D" unique_id=159208789]
+size = Vector3(8, 8, 8)
+shape = 0
+material = SubResource("FogMaterial_smehm")
+
 [node name="Camera3D_Pistol#Hand" type="Node3D" parent="." unique_id=1826501949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1.26306, 0.5)
 
@@ -693,15 +703,6 @@ shadow_blur = 6.0
 spot_range = 100.0
 spot_angle = 20.0
 spot_angle_attenuation = 0.85
-[node name="FogVolume" type="FogVolume" parent="Camera3D" unique_id=1553434094]
-size = Vector3(16, 16, 16)
-shape = 0
-material = SubResource("FogMaterial_fjrip")
-
-[node name="FogVolume2" type="FogVolume" parent="Camera3D" unique_id=159208789]
-size = Vector3(8, 8, 8)
-shape = 0
-material = SubResource("FogMaterial_smehm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=462444822]
 script = ExtResource("4_dqkch")
