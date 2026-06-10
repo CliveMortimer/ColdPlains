@@ -81,19 +81,31 @@ shader = ExtResource("5_r1245")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8b5ia"]
 shader = ExtResource("8_ftq4a")
-shader_parameter/ratio = 0.1
+shader_parameter/ratio = 0.05
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ftq4a"]
+frequency = 0.2414
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8b5ia"]
+noise = SubResource("FastNoiseLite_ftq4a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwfgy"]
+shader = ExtResource("5_0ddhe")
+shader_parameter/screen_ratio = Vector2i(16, 9)
+shader_parameter/screen_size = 25
+shader_parameter/bloom_mult = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_8b5ia")
+shader_parameter/noise_rat = 0.015
+shader_parameter/dither_rat = 0.25
+shader_parameter/levels = 5.0
+shader_parameter/posterization_ratio = 0.8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rucky"]
 shader = ExtResource("4_rucky")
 shader_parameter/screen_ratio = Vector2i(16, 9)
-shader_parameter/screen_size = 20
-shader_parameter/ratio = 0.4
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwfgy"]
-shader = ExtResource("5_0ddhe")
-shader_parameter/levels = 6.0
-shader_parameter/colamt = 7.0
-shader_parameter/ratio = 0.5
+shader_parameter/screen_size = 25
+shader_parameter/res_mult = 2
+shader_parameter/pixelation_ratio = 0.8
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ddhe"]
 vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
@@ -227,7 +239,6 @@ grow_vertical = 2
 
 [node name="BlurX" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1038228366]
 layer = 0
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/BlurX" unique_id=552093582]
 material = SubResource("ShaderMaterial_r1245")
@@ -240,7 +251,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BlurY" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2090503725]
 layer = 0
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/BlurY" unique_id=1800802096]
 material = SubResource("ShaderMaterial_ftq4a")
@@ -262,22 +272,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Pixelation" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1065358867]
+[node name="Quantization" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2104843488]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Pixelation" unique_id=1800395306]
-material = SubResource("ShaderMaterial_rucky")
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Quantization" unique_id=439815265]
+material = SubResource("ShaderMaterial_lwfgy")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Quantization" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=2104843488]
+[node name="Pixelation" type="CanvasLayer" parent="CanvasLayer/HUD/Shaders" unique_id=1065358867]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Quantization" unique_id=439815265]
-material = SubResource("ShaderMaterial_lwfgy")
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD/Shaders/Pixelation" unique_id=1800395306]
+material = SubResource("ShaderMaterial_rucky")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

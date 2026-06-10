@@ -2,13 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dn22jysuvbbdf" path="res://assets/images/istockphoto-1390352280-612x612.jpg" id="1_xoo1l"]
 [ext_resource type="Texture2D" uid="uid://oh5anap6dnot" path="res://assets/images/istockphoto-1390352280-612x612_specular(1).png" id="2_8t0ot"]
-[ext_resource type="PackedScene" uid="uid://dxb7bg1p06wa8" path="res://scenes/Walls.tscn" id="3_whntf"]
+[ext_resource type="PackedScene" path="res://scenes/Walls.tscn" id="3_whntf"]
 [ext_resource type="PackedScene" uid="uid://qv7ayncd6sh2" path="res://Models/Decrations/rocks_tall.tscn" id="4_w881m"]
 [ext_resource type="PackedScene" uid="uid://dbhnhwkj771dv" path="res://Models/Decrations/rocks.tscn" id="5_w6vqs"]
-[ext_resource type="PackedScene" uid="uid://cw7v6o5kvlbhm" path="res://Models/Building/floor_end.tscn" id="6_w6vqs"]
-[ext_resource type="PackedScene" uid="uid://bvi5m4a3pit27" path="res://Models/Building/floor_straight.tscn" id="7_4tddh"]
-[ext_resource type="PackedScene" uid="uid://dsj30h3twauof" path="res://Models/Building/stair_double.tscn" id="8_2aqiq"]
-[ext_resource type="PackedScene" uid="uid://dnyeekati1o0i" path="res://Models/Building/door_wide.tscn" id="9_fqydn"]
+[ext_resource type="MeshLibrary" uid="uid://d3pwu585ltda6" path="res://libary.tres" id="6_w6vqs"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nidv"]
 size = Vector2(140, 140)
@@ -95,7 +92,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.0154743, 0)
 light_color = Color(0.7294118, 0.68235296, 1, 1)
 light_energy = 1.5
 shadow_enabled = true
-shadow_blur = 6.0
 omni_range = 55.0
 omni_attenuation = 0.0
 
@@ -123,17 +119,12 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 2.7438216, 0, 32.65251)
 
 [node name="Building" type="Node3D" parent="." unique_id=1763372394]
 
-[node name="Floor" parent="Building" unique_id=1231979813 instance=ExtResource("6_w6vqs")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 2.0479207, 4.7683716e-07, 3.1625624)
+[node name="Floor" type="Node3D" parent="Building" unique_id=279974964]
 
-[node name="floorStraight" parent="Building" unique_id=1858624347 instance=ExtResource("7_4tddh")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1.9485722, 0, 3.1848865)
-
-[node name="Floor2" parent="Building" unique_id=1075045815 instance=ExtResource("6_w6vqs")]
-transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -5.796205, -1.4305115e-06, 3.1656888)
-
-[node name="stairDouble" parent="Building" unique_id=1609747084 instance=ExtResource("8_2aqiq")]
-transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 1.5640814, -0.30814505, 0.20065403)
-
-[node name="doorWide" parent="Building" unique_id=13937351 instance=ExtResource("9_fqydn")]
-transform = Transform3D(5, 0, 0, 0, 4, 0, 0, 0, 3, 1.5287223, 1.1918547, 1.1279378)
+[node name="GridMap" type="GridMap" parent="Building/Floor" unique_id=1838285905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("6_w6vqs")
+cell_scale = 4.0
+data = {
+"cells": PackedInt32Array(0, 1, 655361, 2, 1, 655361, 65534, 1, 655361, 65532, 1, 655361, 65530, 1, 2, 6, 1, 1441794, 65530, 3, 1441793, 65530, 5, 1441793, 6, 3, 1441793, 6, 5, 1441793, 4, 1, 655361, 6, 7, 655362, 65530, 7, 1048578, 65532, 7, 655361, 65534, 7, 655361, 0, 7, 655361, 2, 7, 655361, 4, 7, 655361, 65535, 9, 5, 1, 9, 1048581)
+}
