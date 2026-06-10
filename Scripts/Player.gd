@@ -5,6 +5,8 @@ signal health_changed(health_value)
 @export var collision_shape : CollisionShape3D
 @export var pistol : Node3D
 @export var pistol_muzzle_flash : GPUParticles3D
+@export var shotgun : Node3D
+@export var shotgun_muzzle_flash : GPUParticles3D
 @export var toygun : Node3D
 @export var uzi : Node3D
 @export var Uzi_muzzle_flash : GPUParticles3D
