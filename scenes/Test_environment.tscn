@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dnyeekati1o0i" path="res://Models/Building/door_wide.tscn" id="9_2aqiq"]
 [ext_resource type="PackedScene" uid="uid://bvgq82hbb52u2" path="res://Models/Building/wall_corner.tscn" id="9_fqydn"]
 [ext_resource type="PackedScene" uid="uid://bp6wd7o2y0lbu" path="res://Models/Building/wall.tscn" id="10_ewrro"]
+[ext_resource type="ArrayMesh" uid="uid://c3hh6ehorfjia" path="res://new_array_mesh.tres" id="11_fqydn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nidv"]
 size = Vector2(140, 140)
@@ -150,7 +151,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4.584153, 0.99999905, -9.293
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -8.441403, 0.99999905, -9.293163)
 
 [node name="doorWide" parent="Building" unique_id=13937351 instance=ExtResource("9_2aqiq")]
-transform = Transform3D(4, 0, 0, 0, 5.5, 0, 0, 0, 4, -0.91016316, 0.90197587, -17.56796)
+transform = Transform3D(4, 0, 0, 0, 5.5, 0, 0, 0, 4, -0.9931462, 0.90197587, -17.56796)
 
 [node name="walCorner" parent="Building" unique_id=17875923 instance=ExtResource("9_fqydn")]
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -14.508442, 0, -1.3940945)
@@ -186,10 +187,10 @@ transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -10.909585, 0, -17.568617)
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -6.91, 0, -17.56843)
 
 [node name="Wall13" parent="Building" unique_id=434364724 instance=ExtResource("10_ewrro")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -4.8606195, 0, -17.568617)
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -4.7871556, 0, -17.568617)
 
 [node name="Wall14" parent="Building" unique_id=2061676198 instance=ExtResource("10_ewrro")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, 2.9913456, 0, -17.568617)
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, 2.8202405, 0, -17.568617)
 
 [node name="Wall15" parent="Building" unique_id=1904038617 instance=ExtResource("10_ewrro")]
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, 5.0629525, 0, -17.568617)
@@ -210,10 +211,23 @@ transform = Transform3D(-1.7484555e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484555e-07, -
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484555e-07, -15.507448, 0, -12.97066)
 
 [node name="Wall17" parent="Building" unique_id=822850199 instance=ExtResource("10_ewrro")]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484555e-07, 13.669334, 0, -4.9850616)
+transform = Transform3D(-1.7484552e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484552e-07, 13.653325, 0, -4.9850616)
 
 [node name="Wall18" parent="Building" unique_id=1526340416 instance=ExtResource("10_ewrro")]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484555e-07, 13.669334, 0, -8.979635)
+transform = Transform3D(-1.7484552e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484552e-07, 13.653325, 0, -8.979635)
 
 [node name="Wall19" parent="Building" unique_id=1165916419 instance=ExtResource("10_ewrro")]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484555e-07, 13.669334, 0, -12.97066)
+transform = Transform3D(-1.7484552e-07, 0, 4, 0, 10, 0, -4, 0, -1.7484552e-07, 13.653325, 0, -12.970659)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Building" unique_id=1202780139]
+operation = 2
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Building/CSGCombiner3D" unique_id=1652514131]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, -1, 0, -17.569)
+mesh = ExtResource("11_fqydn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Building/CSGCombiner3D" unique_id=111580094]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.94803417, 2.7122629, -17.90689)
+operation = 2
+size = Vector3(1.1262207, 1.0412598, 1)
