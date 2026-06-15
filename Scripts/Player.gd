@@ -29,6 +29,11 @@ var current_weapon = null
 var hit_explosion_scene = preload("res://Shaders/hit_explosion.tscn")
 var is_shooting: bool = false # Checks the shooting state
 var can_shoot: bool = true
+var _rng = RandomNumberGenerator.new()
+const SHOTGUN_PELLETS := 8
+const SHOTGUN_SPREAD := 0.08 # tweak for wider/narrower spread
+const SHOTGUN_RANGE := 30.0
+const SHOTGUN_PELLET_DAMAGE := 6
 
 var is_sliding: bool = false
 var slide_timer: float = 0.0
@@ -58,6 +63,7 @@ func _ready():
 	if not is_multiplayer_authority(): 
 		return
 	
+	_rng.randomize()  # <- seed RNG
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
 	
@@ -179,6 +185,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 func perform_shooting_logic():
+	if current_weapon == shotgun:
+		perform_shotgun_shot()
+		return
+
 	if raycast.is_colliding():
 		var hit_player = raycast.get_collider()
 		hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
@@ -192,12 +202,43 @@ func perform_shooting_logic():
 		hit_explosion.setup_particles(damage) #damage for this function should be replaced with damage from the current weapon
 		get_parent().add_child(hit_explosion)
 
+func perform_shotgun_shot():
+	var origin = camera.global_transform.origin
+	var forward = -camera.global_transform.basis.z
+	var space = get_world_3d().direct_space_state
+
+	for i in SHOTGUN_PELLETS:
+		# generate a direction with small random offsets in camera right/up basis
+		var right = camera.global_transform.basis.x
+		var up = camera.global_transform.basis.y
+		var spread_x = _rng.randf_range(-SHOTGUN_SPREAD, SHOTGUN_SPREAD)
+		var spread_y = _rng.randf_range(-SHOTGUN_SPREAD, SHOTGUN_SPREAD)
+		var dir = (forward + right * spread_x + up * spread_y).normalized()
+		var to = origin + dir * SHOTGUN_RANGE
+
+		var params = PhysicsRayQueryParameters3D.new()
+		params.from = origin
+		params.to = to
+		params.exclude = [self]
+		var result = space.intersect_ray(params)
+		if result:
+			var collider = result.get("collider")
+			if collider and collider.has_method("receive_damage"):
+				collider.receive_damage.rpc_id(collider.get_multiplayer_authority())
+			var hit_explosion = hit_explosion_scene.instantiate()
+			var pos = result.get("position")
+			var norm = result.get("normal")
+			hit_explosion.look_at_from_position(pos, norm + pos)
+			hit_explosion.setup_particles(SHOTGUN_PELLET_DAMAGE)
+			get_parent().add_child(hit_explosion)
+
 func switch_weapons(selected_weapon):
 	#Hide all weapons
 	pistol.hide()
 	toygun.hide()
 	uzi.hide()
-	rifle.hide()
+	rifle.hide() 
+	shotgun.hide()
 	# Show the selected weapon
 	current_weapon = selected_weapon
 	if current_weapon:
