@@ -692,7 +692,6 @@ spot_angle_attenuation = 0.85
 
 [node name="Shotgun" parent="Camera3D/Weapon_management" unique_id=1245742429 instance=ExtResource("7_smehm")]
 transform = Transform3D(-0.016585339, 0, 1.2998946, 0, 1.2999997, 0, -1.2998943, 0, -0.016585343, 0.5250223, -0.15395153, -0.628897)
-visible = false
 
 [node name="SMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Shotgun" unique_id=1661589902]
 transform = Transform3D(1, 0, -1.8626451e-09, 0, 0.9999999, 0, 1.8626451e-09, 0, 1, 0.5616574, -0.0051380396, -0.0041780174)
