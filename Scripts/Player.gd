@@ -5,8 +5,8 @@ signal health_changed(health_value)
 @export var collision_shape : CollisionShape3D
 @export var pistol : Node3D
 @export var pistol_muzzle_flash : GPUParticles3D
-@export var shotgun : Node3D
-@export var shotgun_muzzle_flash : GPUParticles3D
+@onready var shotgun = $Camera3D/Weapon_management/Shotgun
+@onready var shotgun_muzzle_flash = $Camera3D/Weapon_management/Shotgun/SMuzzleFlash
 @export var toygun : Node3D
 @export var uzi : Node3D
 @export var Uzi_muzzle_flash : GPUParticles3D
@@ -29,6 +29,9 @@ var current_weapon = null
 var hit_explosion_scene = preload("res://Shaders/hit_explosion.tscn")
 var is_shooting: bool = false # Checks the shooting state
 var can_shoot: bool = true
+var current_ammo: int = 10
+var max_ammo: int = 10
+var reserve_ammo: int = 30
 var _rng = RandomNumberGenerator.new()
 const SHOTGUN_PELLETS := 8
 const SHOTGUN_SPREAD := 0.08 # tweak for wider/narrower spread
@@ -174,6 +177,8 @@ func _physics_process(delta):
 		switch_weapons(uzi)
 	if Input.is_action_just_pressed("swap_to_rifle"):
 		switch_weapons(rifle)
+	if Input.is_action_just_pressed("swap_to_shotgun"):
+		switch_weapons(shotgun)
 
 	if is_shooting and current_weapon == uzi:
 		perform_shooting_logic()
