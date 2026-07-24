@@ -84,7 +84,7 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
-	# Handle shooting input
+	# When oijdfpjvsdn idkbg op d  eikvb epob  od b m[s  s[s
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = true
 		if current_weapon == uzi or current_weapon == rifle:
@@ -274,14 +274,19 @@ func play_shoot_effects():
 			Uzi_muzzle_flash.restart()
 			Uzi_muzzle_flash.emitting = true
 		else:
-			print("Rifle muzzle flash is null")
+			print("Uzi muzzle flash is null")
 	elif current_weapon == rifle:
 		if rifle_muzzle_flash:
 			rifle_muzzle_flash.restart()
 			rifle_muzzle_flash.emitting = true
 		else:
-			print("Uzi muzzle flash is null")
-
+			print("Rifle muzzle flash is null")
+	elif current_weapon == shotgun:
+		if shotgun_muzzle_flash:
+			shotgun_muzzle_flash.restart()
+			shotgun_muzzle_flash.emitting = true
+		else:
+			print("shotg muzzle flash is null")
 
 
 @rpc("any_peer", "call_local")
@@ -322,3 +327,4 @@ func die():
 	hide()
 	if is_multiplayer_authority():
 		get_tree().call_group("ui","show_lose_screen")
+#sflkndfvlncv  osl  sp  ifg ow os  psw  pkd s  s lkn v ,av ns  alhd Is_shooting idk, lol
