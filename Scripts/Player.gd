@@ -32,9 +32,10 @@ var can_shoot: bool = true
 var current_ammo: int = 10
 var max_ammo: int = 10
 var reserve_ammo: int = 30
+var can_equip: bool = false
 var _rng = RandomNumberGenerator.new()
 const SHOTGUN_PELLETS := 8
-const SHOTGUN_SPREAD := 0.08 # tweak for wider/narrower spread
+const SHOTGUN_SPREAD := 0.08 
 const SHOTGUN_RANGE := 30.0
 const SHOTGUN_PELLET_DAMAGE := 6
 
