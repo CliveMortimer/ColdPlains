@@ -341,9 +341,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.55478495, 2.000001, 0.50000006, 2.0705302),
 "update": 0,
-"values": [Vector3(0.55, -0.25, -0.5), Vector3(0.5, -0.2, -0.5), Vector3(0.517, -0.25, -0.5), Vector3(0.55, -0.2, -0.5)]
+"values": [Vector3(0.522, -0.19752526, -0.55), Vector3(0.46358722, -0.16329277, -0.55), Vector3(0.522, -0.19752526, -0.55), Vector3(0.58421606, -0.19752526, -0.55)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -353,9 +353,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.5, 2.0000005, 0.5, 2.0000005),
 "update": 0,
-"values": [Vector3(0.4912426, -0.20862663, -0.51259923), Vector3(0.53689367, -0.27555227, -0.51259923), Vector3(0.58728206, -0.19194412, -0.51259923), Vector3(0.53689367, -0.27555227, -0.51259923)]
+"values": [Vector3(0.4912426, -0.20862663, -0.51259923), Vector3(0.45134342, -0.18247783, -0.51259923), Vector3(0.4912426, -0.20862663, -0.51259923), Vector3(0.546422, -0.18247783, -0.51259923)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -365,9 +365,9 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.5000004, 1.3660426, 0.51763237, 1.3195088),
 "update": 0,
-"values": [Vector3(0.50699687, -0.28565192, -0.6687403), Vector3(0.5987766, -0.4104184, -0.6687403), Vector3(0.6785832, -0.28565192, -0.6687403), Vector3(0.5987766, -0.4104184, -0.6687403)]
+"values": [Vector3(0.48013413, -0.28565192, -0.52978766), Vector3(0.56361645, -0.3672297, -0.52978766), Vector3(0.58134913, -0.28565192, -0.52978766), Vector3(0.56361645, -0.3672297, -0.52978766)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -377,9 +377,9 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.5, 2.0000002, 0.46651652, 2.0000002),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(4.2225374e-09, 1.5707964, -0.0987889), Vector3(0, 1.5707964, 0), Vector3(-3.5506569e-09, 1.5707964, 0.08131917)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, -0.017453292), Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0.017453292)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -714,7 +714,7 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
-transform = Transform3D(-6.489101e-11, 0, 0.001916012, 0, 0.0016090324, 0, -0.0014845332, 0, -8.375155e-11, 0.54466105, -0.28565192, -0.6687403)
+transform = Transform3D(-6.4890995e-11, 0, 0.0019160119, 0, 0.0016090324, 0, -0.001484533, 0, -8.375154e-11, 0.54466105, -0.28565192, -0.6687403)
 visible = false
 
 [node name="RMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Rifle" unique_id=522729273]
