@@ -102,7 +102,6 @@ func update_health_bar(health_value):
 	#health_bar.value = health_value
 	var i=0
 
-
 func _on_test_level_button_pressed() -> void:
 	main_level.queue_free()
 	var level = test_level_scene.instantiate()

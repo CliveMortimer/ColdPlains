@@ -12,11 +12,11 @@ func _ready() -> void:
 	var player = get_parent()
 	player_id = player.name.to_int()
 	
-	print("[PlayerInteraction] Initialized for player: ", player_id)
-	print("[PlayerInteraction] Node path: ", get_path())
-	print("[PlayerInteraction] Parent: ", player.name)
-	print("[PlayerInteraction] Collision layer: ", collision_layer)
-	print("[PlayerInteraction] Collision mask: ", collision_mask)
+	#print("[PlayerInteraction] Initialized for player: ", player_id)
+	#print("[PlayerInteraction] Node path: ", get_path())
+	#print("[PlayerInteraction] Parent: ", player.name)
+	#print("[PlayerInteraction] Collision layer: ", collision_layer)
+	#print("[PlayerInteraction] Collision mask: ", collision_mask)
 	
 	# Get or create inventory
 	inventory = player.get_node_or_null("PlayerInventory")
