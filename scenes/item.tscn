@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b76hhyxgujxgk"]
+
+[ext_resource type="Script" uid="uid://cnd0er3qivykj" path="res://scripts/Item.gd" id="1_4gq7n"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mlnh3"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gq7n"]
+albedo_color = Color(0.6130666, 0.62690157, 1, 1)
+emission = Color(1, 1, 1, 1)
+rim_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bekj2"]
+radius = 0.2
+height = 0.4
+
+[node name="Item" type="Node3D" unique_id=230834839]
+script = ExtResource("1_4gq7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1206455848]
+mesh = SubResource("CapsuleMesh_mlnh3")
+surface_material_override/0 = SubResource("StandardMaterial3D_4gq7n")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2037560242]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1288995683]
+shape = SubResource("CapsuleShape3D_bekj2")

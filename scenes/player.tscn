@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d4jwmgrgu53l6" path="res://Models/low-poly_imi_uzi.glb" id="5_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://3tk255sadi0p" path="res://Models/low-poly_akm.glb" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://eroiq48wv3v1" path="res://Models/remington_870_shotgun.glb" id="7_smehm"]
+[ext_resource type="Script" uid="uid://do0wykf7eoeeh" path="res://scripts/PlayerInteraction.gd" id="8_ur7pv"]
+[ext_resource type="Script" uid="uid://dkiqddx1hgc2j" path="res://scripts/PlayerInventory.gd" id="9_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://cxrrme7deun3q" path="res://scenes/InventoryUI.tscn" id="10_y4r1p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
 
@@ -642,6 +645,10 @@ density = -0.15
 
 [sub_resource type="Theme" id="Theme_qhqgy"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bekj2"]
+radius = 2.5
+height = 5.0
+
 [node name="Player" type="CharacterBody3D" unique_id=820130408 node_paths=PackedStringArray("collision_shape", "pistol", "pistol_muzzle_flash", "toygun", "uzi", "Uzi_muzzle_flash", "rifle", "rifle_muzzle_flash", "camera", "anim_player", "raycast", "flashlight", "enemy_raycast", "particle_raycast")]
 collision_layer = 2
 collision_mask = 5
@@ -831,5 +838,18 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.46140027, 0.96768457, 0, 1)
 theme_override_font_sizes/font_size = 15
 value = 100.0
+
+[node name="InterationZone" type="Area3D" parent="." unique_id=609540560]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("8_ur7pv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterationZone" unique_id=1430255517]
+shape = SubResource("CapsuleShape3D_bekj2")
+
+[node name="PlayerInventory" type="Node3D" parent="." unique_id=1841873247]
+script = ExtResource("9_y4r1p")
+
+[node name="ItemUI" parent="." unique_id=395193283 instance=ExtResource("10_y4r1p")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
