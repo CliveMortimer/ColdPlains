@@ -319,6 +319,102 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.122103, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Weapon_management/toygun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.5835412, -0.19752526, -0.55), Vector3(0.5835412, -0.23642397, -0.57217693)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Weapon_management/toygun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0), Vector3(-0.0012990043, -1.5427525, 0.06160364)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D/Weapon_management/Uzi:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.5458235, -0.18276146, -0.51259923), Vector3(0.5458235, -0.22945452, -0.5373488)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D/Weapon_management/Uzi:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0.00033154085, 1.5801034, -0.09682633)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D/Weapon_management/Rifle:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.48013413, -0.28565192, -0.52978766), Vector3(0.48013413, -0.32299244, -0.5777109)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera3D/Weapon_management/Rifle:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0.00031460286, 1.579387, -0.080026925)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera3D/Weapon_management/Shotgun:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.5250223, -0.15395153, -0.628897), Vector3(0.5250223, -0.1928469, -0.6578959)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Camera3D/Weapon_management/Shotgun:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 1.5835546, 0), Vector3(0.0008719533, 1.609528, -0.04308058)]
+}
 
 [sub_resource type="Animation" id="Animation_qcgne"]
 resource_name = "move"
@@ -368,7 +464,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(0.5000004, 1.3660426, 0.51763237, 1.3195088),
+"transitions": PackedFloat32Array(2.0705318, 0.50000083, 2, 0.5000002),
 "update": 0,
 "values": [Vector3(0.48013413, -0.28565192, -0.52978766), Vector3(0.56361645, -0.3672297, -0.52978766), Vector3(0.58134913, -0.28565192, -0.52978766), Vector3(0.56361645, -0.3672297, -0.52978766)]
 }
@@ -382,7 +478,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
 "transitions": PackedFloat32Array(0.5, 2.0000002, 0.46651652, 2.0000002),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, -0.017453292), Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0.017453292)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(3.2465768e-09, 1.5707964, -0.09179473), Vector3(0, 1.5707964, 0), Vector3(-3.5830303e-09, 1.5707964, 0.099515505)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -392,7 +488,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(1.9318725, 0.4352752, 2.0000007, 0.4829682),
 "update": 0,
 "values": [Vector3(0.5250223, -0.15395153, -0.628897), Vector3(0.56148094, -0.21571791, -0.628897), Vector3(0.57602245, -0.15632713, -0.628897), Vector3(0.56148094, -0.21571791, -0.628897)]
 }
@@ -404,7 +500,7 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.48296818, 2.0705302, 0.49999997, 2.0000005),
 "update": 0,
 "values": [Vector3(0, 1.5835546, 0), Vector3(0.0010172714, 1.583514, -0.07981452), Vector3(0, 1.5835546, 0), Vector3(-0.0012485192, 1.5834934, 0.09801104)]
 }
@@ -444,9 +540,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.4506252, 1),
 "update": 0,
-"values": [Vector3(0.522, -0.16, -0.55), Vector3(0.522, -0.16, -0.55)]
+"values": [Vector3(0.584, -0.198, -0.55), Vector3(0.584, -0.198, -0.55)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -455,10 +551,10 @@ tracks/3/path = NodePath("Camera3D/Weapon_management/toygun:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.11, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.4506253, 1),
 "update": 0,
-"values": [Vector3(0, -1.5707964, 0), Vector3(-3.396091e-09, -1.5707964, -0.07777187), Vector3(0, -1.5707964, 0)]
+"values": [Vector3(-0.002070263, -1.5689639, -0.16309106), Vector3(0.006225356, -1.5686299, -0.0026548747)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -467,10 +563,10 @@ tracks/4/path = NodePath("Camera3D/Weapon_management/Shotgun:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.4506252, 1),
 "update": 0,
-"values": [Vector3(0.5250223, -0.15395153, -0.628897), Vector3(0.5250223, -0.2511598, -0.4489193), Vector3(0.5250223, -0.15395153, -0.628897)]
+"values": [Vector3(0.5250223, -0.11563492, -0.628897), Vector3(0.5250223, -0.15395153, -0.628897)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -479,10 +575,10 @@ tracks/5/path = NodePath("Camera3D/Weapon_management/Shotgun:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.4352752, 1),
 "update": 0,
-"values": [Vector3(0, 1.5835546, 0), Vector3(-0.0033776523, 1.5830994, 0.26792213), Vector3(0, 1.5835546, 0)]
+"values": [Vector3(-0.021630615, 1.7111603, 0.36152828), Vector3(0, 1.5835546, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -703,11 +799,10 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="toygun" parent="Camera3D/Weapon_management" unique_id=145908076 instance=ExtResource("4_qlg0r")]
-transform = Transform3D(-2.1664039e-11, 0, -0.00054015644, 0, 0.00050341495, 0, 0.0004956154, 0, -2.3610988e-11, 0.522, -0.16, -0.55)
-visible = false
+transform = Transform3D(-2.1664033e-11, 0, -0.0005401563, 0, 0.000503415, 0, 0.0004956153, 0, -2.3610983e-11, 0.522, -0.16, -0.55)
 
 [node name="Uzi" parent="Camera3D/Weapon_management" unique_id=488215013 instance=ExtResource("5_tuyoq")]
-transform = Transform3D(-5.2453664e-10, 0, 0.011999998, 0, 0.011999999, 0, -0.011999999, 0, -5.245366e-10, 0.55820125, -0.20862663, -0.51259923)
+transform = Transform3D(-5.2453664e-10, 0, 0.011999998, 0, 0.011999999, 0, -0.012, 0, -5.245366e-10, 0.55820125, -0.20862663, -0.51259923)
 visible = false
 
 [node name="UMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Uzi" unique_id=1450434305]
@@ -721,7 +816,7 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
-transform = Transform3D(-6.4890995e-11, 0, 0.0019160119, 0, 0.0016090324, 0, -0.001484533, 0, -8.375154e-11, 0.54466105, -0.28565192, -0.6687403)
+transform = Transform3D(-6.4890975e-11, 0, 0.0019160119, 0, 0.001609032, 0, -0.0014845325, 0, -8.375154e-11, 0.54466105, -0.28565192, -0.6687403)
 visible = false
 
 [node name="RMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Rifle" unique_id=522729273]
@@ -759,7 +854,8 @@ spot_angle = 20.0
 spot_angle_attenuation = 0.85
 
 [node name="Shotgun" parent="Camera3D/Weapon_management" unique_id=1245742429 instance=ExtResource("7_smehm")]
-transform = Transform3D(-0.016585339, 0, 1.2998946, 0, 1.2999994, 0, -1.2998943, 0, -0.016585343, 0.5250223, -0.15395153, -0.628897)
+transform = Transform3D(-0.016585343, 0, 1.2998952, 0, 1.2999988, 0, -1.2998946, 0, -0.01658535, 0.5250223, -0.15395153, -0.628897)
+visible = false
 
 [node name="SMuzzleFlash" type="GPUParticles3D" parent="Camera3D/Weapon_management/Shotgun" unique_id=1661589902]
 transform = Transform3D(1, 0, -1.8626451e-09, 0, 0.9999999, 0, 1.8626451e-09, 0, 1, 0.5616574, -0.0051380396, -0.0041780174)
