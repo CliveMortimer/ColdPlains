@@ -26,9 +26,6 @@ func _ready() -> void:
 func _spawn_items() -> void:
 	var spawn_count = min(num_items_to_spawn, spawn_points.size())
 	
-	# Shuffle spawn points
-	#spawn_points.shuffle()
-	
 	for i in range(spawn_count):
 		var spawn_pos = spawn_points[i]
 		

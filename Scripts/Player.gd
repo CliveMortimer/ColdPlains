@@ -64,6 +64,7 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	rpc("flashLight_toggle")
 	if not is_multiplayer_authority(): 
 		return
 	
@@ -117,13 +118,11 @@ func _unhandled_input(event):
 	elif Input.is_action_just_released("shoot"):
 		is_shooting = false
 
-
-	
 func _physics_process(delta):
 	if not is_multiplayer_authority() or is_dead: 
 		return
 	
-	_handle_crouch(delta)
+	handle_crouch(delta)
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -305,7 +304,7 @@ func receive_damage():
 		is_dead = true
 		rpc("die")
 
-func _handle_crouch(delta) -> void:
+func handle_crouch(delta) -> void:
 	if is_crouched: 
 		SPEED = crouch_speed 
 		JUMP_VELOCITY = crouch_jump_velocity
@@ -328,4 +327,10 @@ func die():
 	hide()
 	if is_multiplayer_authority():
 		get_tree().call_group("ui","show_lose_screen")
-#sflkndfvlncv  osl  sp  ifg ow os  psw  pkd s  s lkn v ,av ns  alhd Is_shooting idk, lol
+
+@rpc("authority", "call_local")
+func flashLight_toggle():
+	if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlight.visible = not flashlight.visible
+	if is_multiplayer_authority():
+		flashlight.visible = not flashlight.visible

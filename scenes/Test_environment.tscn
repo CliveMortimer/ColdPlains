@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bp6wd7o2y0lbu" path="res://Models/Building/wall.tscn" id="10_ewrro"]
 [ext_resource type="ArrayMesh" uid="uid://c3hh6ehorfjia" path="res://new_array_mesh.tres" id="11_fqydn"]
 [ext_resource type="PackedScene" uid="uid://14abomkr7bef" path="res://Models/kenney_space-station-kit/Models/GLB format/chair-cushion.glb" id="12_ewrro"]
-[ext_resource type="Script" uid="uid://dphmr1n1cksxn" path="res://scripts/ItemSpawner.gd" id="13_berly"]
+[ext_resource type="Script" uid="uid://dphmr1n1cksxn" path="res://Scripts/ItemSpawner.gd" id="13_berly"]
 [ext_resource type="PackedScene" uid="uid://b76hhyxgujxgk" path="res://scenes/item.tscn" id="14_omvro"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nidv"]

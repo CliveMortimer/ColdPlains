@@ -16,9 +16,14 @@ func _ready() -> void:
 	if not player_inventory:
 		print("[InventoryUI] Error: PlayerInventory not found!")
 		return
-	
+
 	print("[InventoryUI] Connected to player inventory for player: ", player_id)
-	
+
+	if not player.is_multiplayer_authority():
+		print("This is NOT the local player, hiding inventory")
+		visible = false
+		return
+
 	# Connect inventory changes (if you add a signal later)
 	# For now, we'll update it every frame
 	update_display()
@@ -30,18 +35,14 @@ func _process(_delta: float) -> void:
 func update_display() -> void:
 	if not player_inventory:
 		return
-	
 	var inventory = player_inventory.get_inventory()
 	var inventory_size = player_inventory.inventory_size
 	var current_count = inventory.size()
-	
 	# Update ItemList
 	item_list.clear()
-	
 	for i in range(current_count):
 		var item_data = inventory[i]
 		var item_text = item_data["name"] + " (" + item_data["type"] + ")"
 		item_list.add_item(item_text)
-	
 	# Update count label
 	item_count_label.text = "Items: " + str(current_count) + "/" + str(inventory_size)
