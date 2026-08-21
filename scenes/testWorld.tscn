@@ -114,11 +114,12 @@ shader_parameter/pixelation_ratio = 0.8
 vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
-[node name="World" type="Node" unique_id=1730723652 node_paths=PackedStringArray("main_level", "name_entry", "lobby_menu")]
+[node name="World" type="Node" unique_id=1730723652 node_paths=PackedStringArray("main_level", "name_entry", "lobby_menu", "start_game_button")]
 script = ExtResource("1_ctiuy")
 main_level = NodePath("NavigationRegion3D")
 name_entry = NodePath("CanvasLayer/MainMenu/MarginContainer/VBoxContainer/NameEntry")
 lobby_menu = NodePath("CanvasLayer/LobbyMenu")
+start_game_button = NodePath("CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/StartButton")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1539882701]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
