@@ -40,6 +40,9 @@ glow_strength = 2.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_dgfsc"]
+allow_unpress = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujyws"]
 bg_color = Color(1, 0.117647, 0, 1)
 
@@ -111,9 +114,11 @@ shader_parameter/pixelation_ratio = 0.8
 vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
-[node name="World" type="Node" unique_id=1730723652 node_paths=PackedStringArray("main_level")]
+[node name="World" type="Node" unique_id=1730723652 node_paths=PackedStringArray("main_level", "name_entry", "lobby_menu")]
 script = ExtResource("1_ctiuy")
 main_level = NodePath("NavigationRegion3D")
+name_entry = NodePath("CanvasLayer/MainMenu/MarginContainer/VBoxContainer/NameEntry")
+lobby_menu = NodePath("CanvasLayer/LobbyMenu")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1539882701]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -176,6 +181,100 @@ layout_mode = 2
 text = "10.177.200.117"
 placeholder_text = "Enter Address to Join Here"
 alignment = 1
+
+[node name="NameEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer" unique_id=472823145]
+layout_mode = 2
+placeholder_text = "Player Name"
+alignment = 1
+
+[node name="LobbyMenu" type="MarginContainer" parent="CanvasLayer" unique_id=799598586]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LobbyMenu" unique_id=875986515]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LobbyMenu/PanelContainer" unique_id=671005138]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer" unique_id=1922170882]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=1747034614]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer" unique_id=1994125402]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="PlayerButton1" type="Button" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer" unique_id=1523431280]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dgfsc")
+text = "Player 1"
+
+[node name="PlayerButton2" type="Button" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer" unique_id=737849443]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dgfsc")
+text = "Player 2
+"
+
+[node name="PlayerButton3" type="Button" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer" unique_id=7986229]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dgfsc")
+text = "Player 3
+"
+
+[node name="PlayerButton4" type="Button" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer" unique_id=1441487251]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dgfsc")
+text = "Player 4
+"
+
+[node name="Label" type="Label" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer" unique_id=179786872]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "Please note: The player list is not yet functional
+The start game button should only be pressed by the host
+Joining an already started game is not supported"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=2083283603]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="StartButton" type="Button" parent="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1867816511]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Start Game"
 
 [node name="HUD" type="Control" parent="CanvasLayer" unique_id=24447867]
 visible = false
@@ -312,4 +411,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00742, 1.03476, 0.74423)
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="text_submitted" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

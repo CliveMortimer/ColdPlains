@@ -1,5 +1,6 @@
 extends Node
 
+
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
@@ -7,38 +8,43 @@ extends Node
 @onready var Player = preload("res://scenes/player.tscn")
 @onready var test_level_scene = preload("res://scenes/test_level.tscn")
 @export var main_level : NavigationRegion3D
+@export var name_entry : LineEdit
+@export var lobby_menu : MarginContainer
 #@onready var Player = $Player
 var tracked = false
 var player
 var isHosting
 
 
-const PORT = 9999
-var enet_peer = ENetMultiplayerPeer.new()
+
+#var enet_peer = ENetMultiplayerPeer.new()
 
 
-func _on_host_button_pressed():
-	isHosting = true
-	main_menu.hide()
-	hud.show()
-	
-	enet_peer.create_server(PORT)
-	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-	
-	add_player(multiplayer.get_unique_id())
-	
-	#upnp_setup()
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _on_join_button_pressed():
 	isHosting = false
 	main_menu.hide()
-	hud.show()
+	lobby_menu.show()
 	
-	enet_peer.create_client(address_entry.text, PORT)
-	multiplayer.multiplayer_peer = enet_peer
+	Lobby.join_game(address_entry.text)
+
+
+func _on_host_button_pressed():
+	isHosting = true
+	main_menu.hide()
+	lobby_menu.show()
+	
+	Lobby.create_game()
+	
+	#upnp_setup()
+
+
+func _on_start_button_pressed() -> void:
+	Lobby.load_game.rpc(get_path())
 
 
 func _on_multiplayer_spawner_spawned(node):
@@ -46,22 +52,30 @@ func _on_multiplayer_spawner_spawned(node):
 		node.health_changed.connect(update_health_bar)
 
 
-func upnp_setup():
-	var upnp = UPNP.new()
-	
-	var discover_result = upnp.discover()
-	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Discover Failed! Error %s" % discover_result)
-
-	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), "UPNP Invalid Gateway!")
-
-	var map_result = upnp.add_port_mapping(PORT)
-	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Port Mapping Failed! Error %s" % map_result)
-	
-	print("Success! Join Address: %s" % upnp.query_external_address())
+func start_game():
+	steup_hud.rpc()
+	# add game starting logic
 
 
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+@rpc("authority", "call_local", "reliable")
+func steup_hud():
+	hud.show()
+	lobby_menu.hide()
+	main_menu.hide()
+
+
+#func upnp_setup():
+	#var upnp = UPNP.new()
+	#
+	#var discover_result = upnp.discover()
+	#assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Discover Failed! Error %s" % discover_result)
+	#
+	#assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), "UPNP Invalid Gateway!")
+	#
+	#var map_result = upnp.add_port_mapping(PORT)
+	#assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Port Mapping Failed! Error %s" % map_result)
+	#
+	#print("Success! Join Address: %s" % upnp.query_external_address())
 
 
 func _physics_process(delta):
@@ -78,8 +92,7 @@ func _on_single_player_button_pressed():
 	main_menu.hide()
 	hud.show()
 	#multiplayer.multiplayer_peer = enet_peer
-	add_player(multiplayer.get_unique_id())
-
+	
 
 
 func add_player(peer_id):
@@ -110,3 +123,8 @@ func _on_test_level_button_pressed() -> void:
 	hud.show()
 	#multiplayer.multiplayer_peer = enet_peer
 	add_player(multiplayer.get_unique_id())
+	
+
+
+func _on_name_entry_text_submitted(new_text: String) -> void:
+	Lobby.player_info["name"] = name_entry.text
