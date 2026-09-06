@@ -10,6 +10,7 @@ extends Node
 @export var main_level : NavigationRegion3D
 @export var name_entry : LineEdit
 @export var lobby_menu : MarginContainer
+@export var start_game_button : Button
 #@onready var Player = $Player
 var tracked = false
 var player
@@ -29,6 +30,7 @@ func _on_join_button_pressed():
 	isHosting = false
 	main_menu.hide()
 	lobby_menu.show()
+	start_game_button.disabled = not isHosting
 	
 	Lobby.join_game(address_entry.text)
 
@@ -37,6 +39,7 @@ func _on_host_button_pressed():
 	isHosting = true
 	main_menu.hide()
 	lobby_menu.show()
+	start_game_button.disabled = not isHosting
 	
 	Lobby.create_game()
 	
