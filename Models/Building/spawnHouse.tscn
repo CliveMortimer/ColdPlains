@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dvl2ovgnd3cg1"]
+
+[ext_resource type="PackedScene" uid="uid://bvgq82hbb52u2" path="res://Models/Building/wall_corner.tscn" id="1_go1xo"]
+[ext_resource type="PackedScene" uid="uid://bp6wd7o2y0lbu" path="res://Models/Building/wall.tscn" id="2_b1gah"]
+[ext_resource type="PackedScene" uid="uid://dnyeekati1o0i" path="res://Models/Building/door_wide.tscn" id="3_s533j"]
+[ext_resource type="PackedScene" uid="uid://bmusfl80pdcq4" path="res://Models/Building/bed.tscn" id="4_5kkfn"]
+[ext_resource type="PackedScene" uid="uid://ddwub624kf0w1" path="res://Models/kenney_space-station-kit/Models/GLB format/computer.glb" id="5_hayog"]
+[ext_resource type="PackedScene" uid="uid://befofc6ij41ul" path="res://Models/kenney_space-station-kit/Models/GLB format/chair.glb" id="6_j8pp5"]
+[ext_resource type="PackedScene" uid="uid://brqpw3ebasby1" path="res://Models/kenney_space-station-kit/Models/GLB format/floor-detail.glb" id="7_y073k"]
+
+[node name="spawnHouse" type="Node3D" unique_id=278982772]
+
+[node name="walCorner" parent="." unique_id=17875923 instance=ExtResource("1_go1xo")]
+
+[node name="walCorner2" parent="." unique_id=1545600330 instance=ExtResource("1_go1xo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.4673084, 0, 0)
+
+[node name="Wall" parent="." unique_id=205469040 instance=ExtResource("2_b1gah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66636395, 0, 0.25)
+
+[node name="walCorner3" parent="." unique_id=1499451342 instance=ExtResource("1_go1xo")]
+transform = Transform3D(-0.9999998, 0, -0.0003820965, 0, 1, 0, 0.0003820965, 0, -0.9999998, 1.467236, 0, -1.7289432)
+
+[node name="walCorner4" parent="." unique_id=305016951 instance=ExtResource("1_go1xo")]
+transform = Transform3D(0.00038213935, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, 0.00038213935, -7.212162e-05, 0, -1.7283825)
+
+[node name="Wall3" parent="." unique_id=1663641317 instance=ExtResource("2_b1gah")]
+transform = Transform3D(-0.9999998, 0, -0.0003820965, 0, 1, 0, 0.0003820965, 0, -0.9999998, 0.80077666, 0, -1.9786884)
+
+[node name="Wall2" parent="." unique_id=346922274 instance=ExtResource("2_b1gah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.717, 0, -0.83722925)
+
+[node name="doorWide" parent="." unique_id=13937351 instance=ExtResource("3_s533j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2501571, 0, -0.8910744)
+
+[node name="Bed" parent="." unique_id=1629870363 instance=ExtResource("4_5kkfn")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0.9343053, -0.06734347, -1.4579197)
+
+[node name="computer2" parent="." unique_id=1227456235 instance=ExtResource("5_hayog")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.07054222, 0, -0.19077262)
+
+[node name="chair2" parent="." unique_id=1486311891 instance=ExtResource("6_j8pp5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.625504, 0, -0.2156344)
+
+[node name="floor-detail2" parent="." unique_id=2007345821 instance=ExtResource("7_y073k")]
+transform = Transform3D(2, 0, 0, 0, 0.2, 0, 0, 0, 2, 0.7671733, -0.042677015, -0.8791076)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=568280942]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.7409098, 1.3047572, -0.73529446)
+visible = false
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 4.485
+light_specular = 16.0
+spot_range = 1.4916488
+spot_angle = 50.873444
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1878004437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60508287, 0.7872009, -0.811652)
+light_energy = 0.5
+omni_range = 7.0
+omni_attenuation = 0.5
