@@ -65,7 +65,8 @@ func _ready():
 	
 	$CanvasLayer.visible = true
 	
-	Lobby.player_loaded.rpc_id(1)
+	if is_multiplayer_authority():
+		Lobby.player_loaded.rpc_id(1)
 
 
 func _exit_tree() -> void:
