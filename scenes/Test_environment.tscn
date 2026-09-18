@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://14abomkr7bef" path="res://Models/kenney_space-station-kit/Models/GLB format/chair-cushion.glb" id="12_ewrro"]
 [ext_resource type="Script" uid="uid://dphmr1n1cksxn" path="res://Scripts/ItemSpawner.gd" id="13_berly"]
 [ext_resource type="PackedScene" uid="uid://b76hhyxgujxgk" path="res://scenes/item.tscn" id="14_omvro"]
+[ext_resource type="PackedScene" uid="uid://dvl2ovgnd3cg1" path="res://Models/Building/spawnHouse.tscn" id="15_omvro"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nidv"]
 size = Vector2(140, 140)
@@ -144,7 +145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh_library = ExtResource("6_w6vqs")
 cell_scale = 4.0
 data = {
-"cells": PackedInt32Array(65533, 65534, 1, 65535, 65534, 1, 1, 65534, 1, 3, 65534, 1, 65531, 65534, 1, 5, 65534, 655362, 65529, 65534, 1048578, 65529, 65532, 1441793, 65529, 65530, 1441793, 65529, 65528, 2, 5, 65532, 1441793, 5, 65530, 1441793, 5, 65528, 1441794, 65531, 65528, 655361, 65533, 65528, 655361, 65535, 65528, 655361, 1, 65528, 655361, 3, 65528, 655361, 0, 65526, 655365, 65534, 65526, 1441797, 3, 65532, 1441793, 3, 65530, 1441793, 1, 65532, 1441793, 1, 65530, 1441793, 65535, 65532, 1441793, 65535, 65530, 1441793, 65533, 65532, 1441793, 65533, 65530, 1441793, 65531, 65530, 1441793, 65531, 65532, 1441793, 5, 65515, 1, 3, 65515, 1, 1, 65515, 1, 5, 65514, 0, 3, 65514, 0, 1, 65514, 0, 5, 65516, 0, 3, 65516, 0, 1, 65516, 0)
+"cells": PackedInt32Array(65533, 65534, 1, 65535, 65534, 1, 1, 65534, 1, 3, 65534, 1, 65531, 65534, 1, 5, 65534, 655362, 65529, 65534, 1048578, 65529, 65532, 1441793, 65529, 65530, 1441793, 65529, 65528, 2, 5, 65532, 1441793, 5, 65530, 1441793, 5, 65528, 1441794, 65531, 65528, 655361, 65533, 65528, 655361, 65535, 65528, 655361, 1, 65528, 655361, 3, 65528, 655361, 0, 65526, 655365, 65534, 65526, 1441797, 3, 65532, 1441793, 3, 65530, 1441793, 1, 65532, 1441793, 1, 65530, 1441793, 65535, 65532, 1441793, 65535, 65530, 1441793, 65533, 65532, 1441793, 65533, 65530, 1441793, 65531, 65530, 1441793, 65531, 65532, 1441793)
 }
 
 [node name="Bed" parent="Building" unique_id=1629870363 instance=ExtResource("7_182q1")]
@@ -245,24 +246,36 @@ operation = 2
 size = Vector3(1.1262207, 1.0412598, 1)
 
 [node name="chair-cushion2" parent="." unique_id=1474049188 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -3.015829, 1.0120724, 6.4894414)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -17.182484, 40.052013, 6.4894414)
 
 [node name="chair-cushion3" parent="." unique_id=1162335973 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -3.015829, 1.0120724, 5.2360187)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -17.182484, 40.052013, 5.2360187)
 
 [node name="chair-cushion4" parent="." unique_id=897979166 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -6.8412356, 1.0120724, 6.4894414)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -21.007889, 40.052013, 6.4894414)
 
 [node name="chair-cushion5" parent="." unique_id=1744318121 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -6.8412356, 1.0120724, 5.2360187)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -21.007889, 40.052013, 5.2360187)
 
 [node name="chair-cushion6" parent="." unique_id=1268655066 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -11.116057, 1.0120724, 6.4894414)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -25.282711, 40.052013, 6.4894414)
 
 [node name="chair-cushion7" parent="." unique_id=448127645 instance=ExtResource("12_ewrro")]
-transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -11.116057, 1.0120724, 5.2360187)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -25.282711, 40.052013, 5.2360187)
 
 [node name="ItemSpawner" type="Node3D" parent="." unique_id=1988371560]
 script = ExtResource("13_berly")
 item_scene = ExtResource("14_omvro")
 spawn_points = Array[Vector3]([Vector3(-20, 0.2, -30), Vector3(-15, 0.2, 15), Vector3(20, 0.2, -30), Vector3(15, 0.2, 15), Vector3(0, 0.2, 0)])
+
+[node name="spawnHouse" parent="." unique_id=278982772 instance=ExtResource("15_omvro")]
+transform = Transform3D(-2.6452477, 0, 3.0004442, 0, 4, 0, -3.0004442, 0, -2.6452477, 36.95573, 0.18689156, 25.715477)
+
+[node name="spawnHouse2" parent="." unique_id=439680733 instance=ExtResource("15_omvro")]
+transform = Transform3D(2.1726978, 0, 3.3584795, 0, 4, 0, -3.3584795, 0, 2.1726978, -28.737192, 0.18689156, 28.160702)
+
+[node name="spawnHouse3" parent="." unique_id=1978206856 instance=ExtResource("15_omvro")]
+transform = Transform3D(3.6847415, 0, -1.5564958, 0, 4, 0, 1.5564958, 0, 3.6847415, -31.139917, 0.18689156, -23.23009)
+
+[node name="spawnHouse4" parent="." unique_id=1811411445 instance=ExtResource("15_omvro")]
+transform = Transform3D(-3.604308, 0, -1.7346362, 0, 4, 0, 1.7346362, 0, -3.604308, 39.509605, 0.18689156, -48.293846)
