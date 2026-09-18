@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dn22jysuvbbdf" path="res://assets/images/istockphoto-1390352280-612x612.jpg" id="1_xoo1l"]
 [ext_resource type="Texture2D" uid="uid://oh5anap6dnot" path="res://assets/images/istockphoto-1390352280-612x612_specular(1).png" id="2_8t0ot"]
-[ext_resource type="PackedScene" path="res://scenes/Walls.tscn" id="3_whntf"]
-[ext_resource type="PackedScene" uid="uid://qv7ayncd6sh2" path="res://Models/Decrations/rocks_tall.tscn" id="4_w881m"]
-[ext_resource type="PackedScene" uid="uid://dbhnhwkj771dv" path="res://Models/Decrations/rocks.tscn" id="5_w6vqs"]
+[ext_resource type="PackedScene" uid="uid://dxb7bg1p06wa8" path="res://scenes/Walls.tscn" id="3_whntf"]
+[ext_resource type="PackedScene" path="res://Models/Decrations/rocks_tall.tscn" id="4_w881m"]
+[ext_resource type="PackedScene" path="res://Models/Decrations/rocks.tscn" id="5_w6vqs"]
 [ext_resource type="MeshLibrary" uid="uid://d3pwu585ltda6" path="res://libary.tres" id="6_w6vqs"]
 [ext_resource type="PackedScene" uid="uid://bmusfl80pdcq4" path="res://Models/Building/bed.tscn" id="7_182q1"]
 [ext_resource type="PackedScene" uid="uid://dnyeekati1o0i" path="res://Models/Building/door_wide.tscn" id="9_2aqiq"]
@@ -124,6 +124,15 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -37.969673, -9.536743e-07, 7.
 
 [node name="Rocks" parent="Environment" unique_id=1905639283 instance=ExtResource("5_w6vqs")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 2.7438216, 0, 32.65251)
+
+[node name="Rocks4" parent="Environment" unique_id=2115560336 instance=ExtResource("4_w881m")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.959059, -1.9073486e-06, -46.40638)
+
+[node name="Rocks5" parent="Environment" unique_id=2147373963 instance=ExtResource("5_w6vqs")]
+transform = Transform3D(5.6202173, 0, -4.172908, 0, 7, 0, 4.172908, 0, 5.6202173, 44.2481, 0, -43.43864)
+
+[node name="Rocks6" parent="Environment" unique_id=818133303 instance=ExtResource("4_w881m")]
+transform = Transform3D(-2.961846, 0, 0.4769362, 0, 3, 0, -0.4769362, 0, -2.961846, -16.181845, -9.536743e-07, -23.551497)
 
 [node name="Building" type="Node3D" parent="." unique_id=1763372394]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -35.17372)
