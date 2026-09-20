@@ -58,7 +58,10 @@ func remove_multiplayer_peer():
 # do Lobby.load_game.rpc(filepath)
 @rpc("call_local", "reliable")
 func load_game(game_node_path):
-	get_node(game_node_path).add_player(multiplayer.get_unique_id())
+	if multiplayer.is_server():
+		#get_node(game_node_path).add_player(1)
+		for id in players:
+			get_node(game_node_path).add_player(id)
 
 
 # Every peer will call this when they have loaded the game scene.
