@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dphmr1n1cksxn" path="res://Scripts/ItemSpawner.gd" id="13_berly"]
 [ext_resource type="PackedScene" uid="uid://b76hhyxgujxgk" path="res://scenes/item.tscn" id="14_omvro"]
 [ext_resource type="PackedScene" uid="uid://dvl2ovgnd3cg1" path="res://Models/Building/spawnHouse.tscn" id="15_omvro"]
+[ext_resource type="PackedScene" uid="uid://c8bj76bgwbc21" path="res://Models/Decrations/sheep.glb" id="16_3o6i8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nidv"]
 size = Vector2(140, 140)
@@ -118,22 +119,25 @@ transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 1.8321915, 0.013955414,
 [node name="Environment" type="Node3D" parent="." unique_id=1315492286]
 
 [node name="Rocks2" parent="Environment" unique_id=471023016 instance=ExtResource("4_w881m")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -23.869059, -9.536743e-07, 33.352676)
+transform = Transform3D(-2.6497416, 0, -1.4067225, 0, 2.9999995, 0, 1.4067225, 0, -2.6497416, -18.037182, -0.03974247, 23.574594)
 
 [node name="Rocks3" parent="Environment" unique_id=750338050 instance=ExtResource("4_w881m")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -37.969673, -9.536743e-07, 7.2539806)
 
 [node name="Rocks" parent="Environment" unique_id=1905639283 instance=ExtResource("5_w6vqs")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 2.7438216, 0, 32.65251)
+transform = Transform3D(-5.1132245, 0, 4.7806835, 0, 7, 0, -4.7806835, 0, -5.1132245, 24.984808, -0.037807465, 29.719383)
 
 [node name="Rocks4" parent="Environment" unique_id=2115560336 instance=ExtResource("4_w881m")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.959059, -1.9073486e-06, -46.40638)
+transform = Transform3D(3.1733046, 0, 3.8639536, 0, 5, 0, -3.8639536, 0, 3.1733046, -7.959059, -1.9073486e-06, -37.406258)
 
 [node name="Rocks5" parent="Environment" unique_id=2147373963 instance=ExtResource("5_w6vqs")]
-transform = Transform3D(5.6202173, 0, -4.172908, 0, 7, 0, 4.172908, 0, 5.6202173, 44.2481, 0, -43.43864)
+transform = Transform3D(-3.590456, 0, 6.0090446, 0, 6.9999995, 0, -6.0090446, 0, -3.590456, 43.66899, 0, -37.30959)
 
 [node name="Rocks6" parent="Environment" unique_id=818133303 instance=ExtResource("4_w881m")]
-transform = Transform3D(-2.961846, 0, 0.4769362, 0, 3, 0, -0.4769362, 0, -2.961846, -16.181845, -9.536743e-07, -23.551497)
+transform = Transform3D(-2.844867, 0, -0.9522246, 0, 3.0000005, 0, 0.9522246, 0, -2.844867, -11.665251, -9.536743e-07, -15.45249)
+
+[node name="Rocks7" parent="Environment" unique_id=1147174652 instance=ExtResource("5_w6vqs")]
+transform = Transform3D(-5.5541964, 0, 4.260388, 0, 7, 0, -4.260388, 0, -5.5541964, -19.953075, -0.037807465, 24.343775)
 
 [node name="Building" type="Node3D" parent="." unique_id=1763372394]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -35.17372)
@@ -279,3 +283,21 @@ transform = Transform3D(3.6847415, 0, -1.5564958, 0, 4, 0, 1.5564958, 0, 3.68474
 
 [node name="spawnHouse4" parent="." unique_id=1811411445 instance=ExtResource("15_omvro")]
 transform = Transform3D(-3.604308, 0, -1.7346362, 0, 4, 0, 1.7346362, 0, -3.604308, 39.509605, 0.18689156, -48.293846)
+
+[node name="sheep" parent="." unique_id=71257746 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.04139, 0.0108110905, 63.576855)
+
+[node name="sheep2" parent="." unique_id=1126409793 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(-0.87530524, 0, -0.4835708, 0, 1, 0, 0.4835708, 0, -0.87530524, 65.95441, 0.0108110905, 59.65413)
+
+[node name="sheep3" parent="." unique_id=131212325 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(0.033926845, 0, -0.99942434, 0, 1, 0, 0.99942434, 0, 0.033926845, 65.14489, 0.010810614, 61.197803)
+
+[node name="sheep4" parent="." unique_id=1358721505 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(0.6157613, 0, 0.78793275, 0, 1, 0, -0.78793275, 0, 0.6157613, 67.67906, 0.0108110905, 62.79718)
+
+[node name="sheep5" parent="." unique_id=1519068065 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(-0.6243996, 0, 0.7811051, 0, 1, 0, -0.7811051, 0, -0.6243996, 68.061676, 0.010810614, 59.521473)
+
+[node name="sheep6" parent="." unique_id=1979979954 instance=ExtResource("16_3o6i8")]
+transform = Transform3D(-1.0686151, 8.186553, 12.523516, 0.6960194, 12.569025, -8.156913, -14.945692, 7.559982e-07, -1.2752964, 8.145758, 15.303881, -24.063976)
