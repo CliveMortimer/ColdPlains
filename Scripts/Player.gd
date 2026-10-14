@@ -5,13 +5,15 @@ signal health_changed(health_value)
 @export var collision_shape : CollisionShape3D
 @export var pistol : Node3D
 @export var pistol_muzzle_flash : GPUParticles3D
-@onready var shotgun = $Camera3D/Weapon_management/Shotgun
-@onready var shotgun_muzzle_flash = $Camera3D/Weapon_management/Shotgun/SMuzzleFlash
+@export var shotgun : Node3D
+@export var shotgun_muzzle_flash : GPUParticles3D
 @export var toygun : Node3D
 @export var uzi : Node3D
 @export var Uzi_muzzle_flash : GPUParticles3D
+@export var Uzi_timer : Timer
 @export var rifle : Node3D
 @export var rifle_muzzle_flash : GPUParticles3D
+@export var rifle_timer : Timer
 @export var camera : Camera3D
 @export var anim_player : AnimationPlayer
 @export var raycast : RayCast3D
@@ -94,17 +96,15 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
-	# When oijdfpjvsdn idkbg op d  eikvb epob  od b m[s  s[s
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = true
 		if current_weapon == uzi or current_weapon == rifle:
 			anim_player.play("automatic_weapons_shoot")
 			play_shoot_effects.rpc()
 			perform_shooting_logic()
-		else:  # pistol or toygun
-			# Enforcing the shooting animation waiting mechanism
+		else: 
 			if can_shoot or no_cooldown:
-				can_shoot = false  # Set this to false to prevent immediate re-shot
+				can_shoot = false  
 				anim_player.play("shoot")
 				play_shoot_effects.rpc()
 				perform_shooting_logic()
@@ -112,7 +112,6 @@ func _unhandled_input(event):
 				print("Cannot shoot yet; waiting for animation to finish.")
 
 	elif Input.is_action_pressed("shoot") and is_shooting and (current_weapon == uzi or current_weapon == rifle):
-		# Continue automatic fire while held
 		if anim_player.current_animation != "automatic_weapons_shoot":
 			anim_player.play("automatic_weapons_shoot")
 		play_shoot_effects.rpc()

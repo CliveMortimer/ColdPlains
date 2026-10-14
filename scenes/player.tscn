@@ -890,6 +890,9 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
+[node name="UCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Uzi" unique_id=1258518814]
+wait_time = 0.05
+
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
 transform = Transform3D(-6.489098e-11, 0, 0.0019160119, 0, 0.0016090324, 0, -0.0014845326, 0, -8.375154e-11, 0.54466105, -0.28565192, -0.6687403)
 visible = false
@@ -903,6 +906,9 @@ one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
+
+[node name="RCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Rifle" unique_id=1795233398]
+wait_time = 0.1
 
 [node name="Flashlight" type="Node3D" parent="Camera3D/Weapon_management" unique_id=34318359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34380847, -0.094905615, -0.25112867)
