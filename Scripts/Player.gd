@@ -98,18 +98,17 @@ func _unhandled_input(event):
 
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = true
-		if current_weapon == uzi or current_weapon == rifle:
-			anim_player.play("automatic_weapons_shoot")
-			play_shoot_effects.rpc()
-			perform_shooting_logic()
-		else: 
+		if current_weapon != uzi and current_weapon != rifle:
 			if can_shoot or no_cooldown:
-				can_shoot = false  
+				can_shoot = false
 				anim_player.play("shoot")
 				play_shoot_effects.rpc()
 				perform_shooting_logic()
 			else:
 				print("Cannot shoot yet; waiting for animation to finish.")
+	elif Input.is_action_just_released("shoot"):
+		is_shooting = false
+
 
 	elif Input.is_action_pressed("shoot") and is_shooting and (current_weapon == uzi or current_weapon == rifle):
 		if anim_player.current_animation != "automatic_weapons_shoot":
@@ -188,11 +187,22 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("swap_to_shotgun"):
 		switch_weapons(shotgun)
 
-	if is_shooting and current_weapon == uzi:
-		perform_shooting_logic()
-		
-	if is_shooting and current_weapon == rifle:
-		perform_shooting_logic()
+	# Automatic weapons cooldown tracking
+	if is_shooting:
+		if current_weapon == uzi and (Uzi_timer.is_stopped() or no_cooldown):
+			if anim_player.current_animation != "automatic_weapons_shoot":
+				anim_player.play("automatic_weapons_shoot")
+			play_shoot_effects.rpc()
+			perform_shooting_logic()
+			Uzi_timer.start() # Uses 'Wait Time' set in your Inspector (e.g., 0.1s)
+			
+		elif current_weapon == rifle and (rifle_timer.is_stopped() or no_cooldown):
+			if anim_player.current_animation != "automatic_weapons_shoot":
+				anim_player.play("automatic_weapons_shoot")
+			play_shoot_effects.rpc()
+			perform_shooting_logic()
+			rifle_timer.start() # Uses 'Wait Time' set in your Inspector (e.g., 0.2s)
+
 		
 	move_and_slide()
 
