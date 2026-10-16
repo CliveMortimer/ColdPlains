@@ -3,17 +3,18 @@ class_name ItemSpawner
 
 @export var item_scene: PackedScene
 @export var spawn_points: Array[Vector3] = []
-@export var num_items_to_spawn: int = 5
+@export var num_items_to_spawn: int = 1000
 @export var random_offset: float = 1.0
  
 var spawned_items: Array[Item] = []
 
+
 func _ready() -> void:
-	if not is_multiplayer_authority():
+	if not multiplayer.is_server():
 		return
 	
 	if item_scene == null:
-		print("Error: item_scene not set in ItemSpawner!")
+		push_error("item_scene not set in ItemSpawner!")
 		return
 	
 	# If no spawn points defined, create random ones
@@ -22,6 +23,7 @@ func _ready() -> void:
 		_generate_random_spawn_points()
 	
 	_spawn_items()
+
 
 func _spawn_items() -> void:
 	var spawn_count = min(num_items_to_spawn, spawn_points.size())
@@ -46,18 +48,21 @@ func _spawn_items() -> void:
 		
 		print("Spawned item at: ", spawn_pos)
 
+
 func _generate_random_spawn_points() -> void:
 	# Generate 10 random spawn points around the origin
 	for i in range(10):
 		var random_pos = Vector3(
-			randf_range(-20, 20),
-			0.5,
-			randf_range(-20, 20)
+			randf_range(-50, 50),
+			0.2,
+			randf_range(-50, 50)
 		)
 		spawn_points.append(random_pos)
 
+
 func get_spawned_items() -> Array[Item]:
 	return spawned_items
+
 
 func reset_all_items() -> void:
 	for item in spawned_items:

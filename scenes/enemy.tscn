@@ -10,6 +10,7 @@
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_phvpf")
+can_move = false
 dps_label = NodePath("DPSLabel")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=994554542]
