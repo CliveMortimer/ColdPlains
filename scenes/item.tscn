@@ -2,29 +2,46 @@
 
 [ext_resource type="Script" uid="uid://cnd0er3qivykj" path="res://Scripts/Item.gd" id="1_4gq7n"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mlnh3"]
-radius = 0.2
-height = 0.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e8ga"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gq7n"]
-albedo_color = Color(0.6130666, 0.62690157, 1, 1)
-emission = Color(1, 1, 1, 1)
-rim_enabled = true
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pr0dk"]
+material = SubResource("StandardMaterial3D_4e8ga")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bekj2"]
-radius = 0.2
-height = 0.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr0dk"]
+albedo_color = Color(1, 0, 0, 1)
 
-[node name="Item" type="Node3D" unique_id=230834839]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ukdhv"]
+material = SubResource("StandardMaterial3D_pr0dk")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gq7n"]
+radius = 0.13378906
+height = 0.4972229
+
+[node name="Item" type="Node3D" unique_id=230834839 node_paths=PackedStringArray("pill")]
 script = ExtResource("1_4gq7n")
+pill = NodePath("Pill")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1206455848]
-mesh = SubResource("CapsuleMesh_mlnh3")
-surface_material_override/0 = SubResource("StandardMaterial3D_4gq7n")
+[node name="Pill" type="Node3D" parent="." unique_id=2065065665]
+transform = Transform3D(0.25, 0, 0, 0, 0.19801474, 0.15261117, 0, -0.15261117, 0.19801474, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Pill" unique_id=1175847625]
+mesh = SubResource("CapsuleMesh_pr0dk")
+skeleton = NodePath("../..")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Pill" unique_id=1781803096]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Pill/CSGCombiner3D" unique_id=1499423690]
+transform = Transform3D(1.04, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ukdhv")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pill/CSGCombiner3D" unique_id=472308647]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
+operation = 2
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2037560242]
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1288995683]
-shape = SubResource("CapsuleShape3D_bekj2")
+transform = Transform3D(1, 0, 0, 0, 0.7922896, 0.61014515, 0, -0.61014515, 0.7922896, 0, 0.0012452081, -0.00095893606)
+shape = SubResource("CapsuleShape3D_4gq7n")

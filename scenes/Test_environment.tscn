@@ -278,7 +278,6 @@ transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474
 [node name="ItemSpawner" type="Node3D" parent="." unique_id=1988371560]
 script = ExtResource("13_berly")
 item_scene = ExtResource("14_omvro")
-spawn_points = Array[Vector3]([Vector3(-20, 0.2, -30), Vector3(-15, 0.2, 15), Vector3(20, 0.2, -30), Vector3(15, 0.2, 15), Vector3(0, 0.2, 0)])
 
 [node name="spawnHouse" parent="." unique_id=278982772 instance=ExtResource("15_omvro")]
 transform = Transform3D(-2.6452477, 0, 3.0004442, 0, 4, 0, -3.0004442, 0, -2.6452477, 36.95573, 0.18689156, 25.715477)
