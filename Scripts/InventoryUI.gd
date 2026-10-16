@@ -11,7 +11,8 @@ func _ready() -> void:
 	# Get reference to player's inventory
 	var player = get_parent()
 	player_id = player.name.to_int()
-	player_inventory = player.get_node_or_null("PlayerInventory")
+	player_inventory = player.get_node_or_null("PlayerInventory.gd")
+
 	
 	if not player_inventory:
 		print("[InventoryUI] Error: PlayerInventory not found!")

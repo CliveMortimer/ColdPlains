@@ -997,6 +997,7 @@ spot_angle = 20.0
 spot_angle_attenuation = 0.85
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=462444822]
+visible = false
 script = ExtResource("4_dqkch")
 
 [node name="HealthLabel" type="ProgressBar" parent="CanvasLayer" unique_id=1184296204]
@@ -1016,14 +1017,18 @@ theme_override_font_sizes/font_size = 15
 value = 100.0
 
 [node name="InterationZone" type="Area3D" parent="." unique_id=609540560]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InterationZone" unique_id=1430255517]
+visible = false
 shape = SubResource("CapsuleShape3D_bekj2")
 
 [node name="PlayerInventory" type="Node3D" parent="." unique_id=1841873247]
+visible = false
 
 [node name="ItemUI" parent="." unique_id=395193283 instance=ExtResource("10_y4r1p")]
+visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
