@@ -5,13 +5,15 @@ signal health_changed(health_value)
 @export var collision_shape : CollisionShape3D
 @export var pistol : Node3D
 @export var pistol_muzzle_flash : GPUParticles3D
-@onready var shotgun = $Camera3D/Weapon_management/Shotgun
-@onready var shotgun_muzzle_flash = $Camera3D/Weapon_management/Shotgun/SMuzzleFlash
+@export var shotgun : Node3D
+@export var shotgun_muzzle_flash : GPUParticles3D
 @export var toygun : Node3D
 @export var uzi : Node3D
 @export var Uzi_muzzle_flash : GPUParticles3D
 @export var rifle : Node3D
 @export var rifle_muzzle_flash : GPUParticles3D
+@export var Uzi_timer : Timer
+@export var rifle_timer : Timer
 @export var camera : Camera3D
 @export var anim_player : AnimationPlayer
 @export var raycast : RayCast3D
@@ -25,8 +27,7 @@ signal health_changed(health_value)
 @export var slide_friction: float = 0.95
 @export var no_cooldown = false
 
-@onready var Uzi_timer: Timer = $Camera3D/Weapon_management/Uzi/UCoolTimer
-@onready var rifle_timer: Timer = $Camera3D/Weapon_management/Rifle/RCoolTimer
+
 var current_weapon = null
 var hit_explosion_scene = preload("res://Shaders/hit_explosion.tscn")
 var is_shooting: bool = false # Checks the shooting state
@@ -194,7 +195,7 @@ func _physics_process(delta):
 				anim_player.play("automatic_weapons_shoot")
 			play_shoot_effects.rpc()
 			perform_shooting_logic()
-			Uzi_timer.start() # Uses 'Wait Time' set in your Inspector (e.g., 0.1s)
+			#Uzi_timer.start() # Uses 'Wait Time' set in your Inspector (e.g., 0.1s)
 			
 		elif current_weapon == rifle and (rifle_timer.is_stopped() or no_cooldown):
 			if anim_player.current_animation != "automatic_weapons_shoot":

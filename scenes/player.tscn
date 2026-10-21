@@ -819,18 +819,22 @@ density = -0.15
 radius = 2.5
 height = 5.0
 
-[node name="Player" type="CharacterBody3D" unique_id=820130408 node_paths=PackedStringArray("collision_shape", "pistol", "pistol_muzzle_flash", "toygun", "uzi", "Uzi_muzzle_flash", "rifle", "rifle_muzzle_flash", "camera", "anim_player", "raycast", "flashlight", "enemy_raycast", "particle_raycast")]
+[node name="Player" type="CharacterBody3D" unique_id=820130408 node_paths=PackedStringArray("collision_shape", "pistol", "pistol_muzzle_flash", "shotgun", "shotgun_muzzle_flash", "toygun", "uzi", "Uzi_muzzle_flash", "rifle", "rifle_muzzle_flash", "Uzi_timer", "rifle_timer", "camera", "anim_player", "raycast", "flashlight", "enemy_raycast", "particle_raycast")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_fjrip")
 collision_shape = NodePath("CollisionShape3D")
 pistol = NodePath("Camera3D/Weapon_management/Pistol")
 pistol_muzzle_flash = NodePath("Camera3D/Weapon_management/Pistol/PMuzzleFlash")
+shotgun = NodePath("Camera3D/Weapon_management/Shotgun")
+shotgun_muzzle_flash = NodePath("Camera3D/Weapon_management/Shotgun/SMuzzleFlash")
 toygun = NodePath("Camera3D/Weapon_management/toygun")
 uzi = NodePath("Camera3D/Weapon_management/Uzi")
 Uzi_muzzle_flash = NodePath("Camera3D/Weapon_management/Uzi/UMuzzleFlash")
 rifle = NodePath("Camera3D/Weapon_management/Rifle")
 rifle_muzzle_flash = NodePath("Camera3D/Weapon_management/Rifle/RMuzzleFlash")
+Uzi_timer = NodePath("Camera3D/Weapon_management/Uzi/UCoolTimer")
+rifle_timer = NodePath("Camera3D/Weapon_management/Rifle/RCoolTimer")
 camera = NodePath("Camera3D")
 anim_player = NodePath("AnimationPlayer")
 raycast = NodePath("Camera3D/RayCast3D")
@@ -891,7 +895,7 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="UCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Uzi" unique_id=1258518814]
-wait_time = 0.05
+wait_time = 0.2
 
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
 transform = Transform3D(-6.489098e-11, 0, 0.0019160119, 0, 0.0016090324, 0, -0.0014845326, 0, -8.375154e-11, 0.54466105, -0.28565192, -0.6687403)
@@ -908,7 +912,7 @@ process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
 [node name="RCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Rifle" unique_id=1795233398]
-wait_time = 0.1
+wait_time = 0.4
 
 [node name="Flashlight" type="Node3D" parent="Camera3D/Weapon_management" unique_id=34318359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34380847, -0.094905615, -0.25112867)
