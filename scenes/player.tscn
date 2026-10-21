@@ -833,8 +833,8 @@ uzi = NodePath("Camera3D/Weapon_management/Uzi")
 Uzi_muzzle_flash = NodePath("Camera3D/Weapon_management/Uzi/UMuzzleFlash")
 rifle = NodePath("Camera3D/Weapon_management/Rifle")
 rifle_muzzle_flash = NodePath("Camera3D/Weapon_management/Rifle/RMuzzleFlash")
-Uzi_timer = NodePath("Camera3D/Weapon_management/Uzi/UCoolTimer")
-rifle_timer = NodePath("Camera3D/Weapon_management/Rifle/RCoolTimer")
+Uzi_timer = NodePath("Camera3D/Weapon_management/Uzi/UziTimer")
+rifle_timer = NodePath("Camera3D/Weapon_management/Rifle/RifleTimer")
 camera = NodePath("Camera3D")
 anim_player = NodePath("AnimationPlayer")
 raycast = NodePath("Camera3D/RayCast3D")
@@ -894,7 +894,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
-[node name="UCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Uzi" unique_id=1258518814]
+[node name="UziTimer" type="Timer" parent="Camera3D/Weapon_management/Uzi" unique_id=1258518814]
 wait_time = 0.2
 
 [node name="Rifle" parent="Camera3D/Weapon_management" unique_id=1334222396 instance=ExtResource("6_fjrip")]
@@ -911,7 +911,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uu53b")
 draw_pass_1 = SubResource("PlaneMesh_b2g4i")
 
-[node name="RCoolTimer" type="Timer" parent="Camera3D/Weapon_management/Rifle" unique_id=1795233398]
+[node name="RifleTimer" type="Timer" parent="Camera3D/Weapon_management/Rifle" unique_id=1795233398]
 wait_time = 0.4
 
 [node name="Flashlight" type="Node3D" parent="Camera3D/Weapon_management" unique_id=34318359]
