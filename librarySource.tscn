@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsj30h3twauof" path="res://Models/Building/stair_double.tscn" id="5_jsk3o"]
 [ext_resource type="PackedScene" uid="uid://bva5cwvb2j8e8" path="res://Models/Building/stair_corner.tscn" id="6_lmk64"]
 [ext_resource type="PackedScene" uid="uid://boawlph2v8nlw" path="res://Models/Building/stair_ramp.tscn" id="7_xywud"]
+[ext_resource type="PackedScene" uid="uid://dmjq714i17s5d" path="res://Models/Building/floor_tile.tscn" id="8_rd54c"]
 
 [node name="librarySource" type="Node3D" unique_id=1856320612]
 
@@ -24,3 +25,5 @@
 
 [node name="stairRamp" parent="." unique_id=1117069453 instance=ExtResource("7_xywud")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="floorTile" parent="." unique_id=180461493 instance=ExtResource("8_rd54c")]

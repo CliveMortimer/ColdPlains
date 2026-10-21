@@ -46,8 +46,11 @@ var is_sliding: bool = false
 var slide_timer: float = 0.0
 var is_dead: bool = false
 
-var health = 100
-var damage = 10
+var health: int = 100
+var max_health: int = 100
+var damage: int = 10
+
+const HEALTH_PACK_HEAL_AMOUNT: int = 30 #Do we want to heal that much?
 
 var SPEED = 10.0
 var JUMP_VELOCITY = 10.0
@@ -358,3 +361,67 @@ func die():
 @rpc("call_local", "reliable", "any_peer")
 func flashLight_toggle():
 	flashlight.visible = not flashlight.visible
+	
+
+func heal(amount: int) -> bool:
+	if not is_multiplayer_authority():
+		return false
+	if is_dead or health >= max_health:
+		return false
+	var old_health = health
+	health = mini(health + amount, max_health)
+	if health != old_health:
+		health_changed.emit(health)
+		print("Player healed! Health: ", health, "/", max_health)
+		return true
+	return false
+
+
+func request_use_health_pack() -> void:
+	if not is_multiplayer_authority() or is_dead:
+		return
+	if multiplayer.is_server():
+		_server_use_health_pack()
+	else:
+		request_use_health_pack_rpc.rpc_id(1)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func request_use_health_pack_rpc() -> void:
+	if not multiplayer.is_server():
+		return
+	# Only accept requests from the owner of this player.
+	var sender_id := multiplayer.get_remote_sender_id()
+	if sender_id != get_multiplayer_authority():
+		return
+	_server_use_health_pack()
+
+
+func _server_use_health_pack() -> void:
+	if not multiplayer.is_server() or is_dead:
+		return
+	var inventory_node := get_node_or_null("PlayerInventory") as PlayerInventory
+	if inventory_node == null:
+		return
+	if health >= max_health:
+		print("Health is already full.")
+		return
+	if inventory_node.use_health_pack_server(HEALTH_PACK_HEAL_AMOUNT):
+		var new_health := mini(health + HEALTH_PACK_HEAL_AMOUNT, max_health)
+		_broadcast_health(new_health)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _receive_health_update(new_health: int) -> void:
+	# Only accept health updates sent by the server on remote peers.
+	if not multiplayer.is_server():
+		if multiplayer.get_remote_sender_id() != 1:
+			return
+	health = clampi(new_health, 0, max_health)
+	health_changed.emit(health)
+
+
+func _broadcast_health(new_health: int) -> void:
+	if not multiplayer.is_server():
+		return
+	_receive_health_update.rpc(new_health)

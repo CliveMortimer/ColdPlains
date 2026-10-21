@@ -43,7 +43,7 @@ func update_display() -> void:
 	item_list.clear()
 	for i in range(current_count):
 		var item_data = inventory[i]
-		var item_text = item_data["name"] + " (" + item_data["type"] + ")"
+		var item_text = item_data["name"]
 		item_list.add_item(item_text)
 	# Update count label
 	item_count_label.text = "Items: " + str(current_count) #+ "/" + str(inventory_size)
