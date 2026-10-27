@@ -53,7 +53,25 @@ func _on_host_button_pressed():
 
 
 func _on_start_button_pressed() -> void:
-	Lobby.load_game.rpc(get_path())
+	reset_and_start()
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("restart"):
+		reset_and_start()
+
+
+func reset_and_start():
+	$deadUI.visible = false
+	if multiplayer.get_unique_id() == 1:
+		get_tree().call_group("Player", "delete")
+		delete_players.rpc()
+		$Timer.start()
+
+
+@rpc("any_peer", "call_local", "reliable")
+func delete_players():
+	get_tree().call_group("Player", "delete")
 
 
 func _on_multiplayer_spawner_spawned(node):
@@ -69,6 +87,7 @@ func start_game():
 
 @rpc("authority", "call_local", "reliable")
 func steup_hud():
+	$deadUI.visible = false
 	hud.show()
 	lobby_menu.hide()
 	main_menu.hide()
@@ -89,7 +108,7 @@ func steup_hud():
 
 
 func _physics_process(delta):
-	if tracked:
+	if tracked and player:
 		get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 	if Lobby.players:
 		var ids = Lobby.players.keys()
@@ -116,11 +135,12 @@ func _on_single_player_button_pressed():
 	
 
 
-func add_player(peer_id):
+func add_player(peer_id, player_id = -1):
 	player = Player.instantiate()
 	player.name = str(peer_id)
 	add_child(player)
 	tracked = true
+	
 	if player.is_multiplayer_authority():
 		player.health_changed.connect(update_health_bar)
 
@@ -154,3 +174,8 @@ func _on_name_entry_text_submitted(new_text: String) -> void:
 
 func _on_player_connected():
 	pass
+
+
+func _on_timer_timeout() -> void:
+	if multiplayer.get_unique_id() == 1:
+		Lobby.load_game.rpc(get_path())

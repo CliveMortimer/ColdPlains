@@ -1035,4 +1035,5 @@ visible = false
 [node name="ItemUI" parent="." unique_id=395193283 instance=ExtResource("10_y4r1p")]
 visible = false
 
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

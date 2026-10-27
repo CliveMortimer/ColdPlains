@@ -12,8 +12,10 @@
 [node name="librarySource" type="Node3D" unique_id=1856320612]
 
 [node name="doorWide" parent="." unique_id=13937351 instance=ExtResource("1_jka67")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="floorStraight" parent="." unique_id=1858624347 instance=ExtResource("1_a202f")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="panelCorner" parent="." unique_id=1467323546 instance=ExtResource("3_i5arm")]
 
