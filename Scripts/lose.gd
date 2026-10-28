@@ -34,26 +34,29 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if $Timer.time_left == 0:
-		var names : Dictionary
-		for id in Lobby.players:
-			names.get_or_add(Lobby.players[id]["life_length"], Lobby.players[id]["name"])
-		names.sort()
-		for i in names.size():
-			var keys = names.keys()
-			panel_array[i].visible = true
-			name_array[i].text = names[keys[i]]
-			var value = keys[i]
-			if value < 0:
-				value = time + Lobby.players[multiplayer.get_unique_id()]["life_length"]
-			time_array[i].text = str(round(value * 100) / 100)
-		
-		if Lobby.gameover == true:
-			visible = true
-			if Lobby.players[multiplayer.get_unique_id()]["life_length"] < 0:
-				win_label.visible = true
-			if multiplayer.get_unique_id() == 1:
-				restart_button.visible = true
+	if Lobby.players.has("1"):
+		if $Timer.time_left == 0:
+			var names : Dictionary
+			for id in Lobby.players:
+				names.get_or_add(Lobby.players[id]["life_length"], Lobby.players[id]["name"])
+			names.sort()
+			for i in names.size():
+				var keys = names.keys()
+				panel_array[i].visible = true
+				name_array[i].text = names[keys[i]]
+				var value = keys[i]
+				if value < 0:
+					value = time + Lobby.players[multiplayer.get_unique_id()]["life_length"]
+				time_array[i].text = str(round(value * 100) / 100)
+			
+			if Lobby.gameover == true:
+				visible = true
+				if Lobby.players[multiplayer.get_unique_id()]["life_length"] < 0:
+					win_label.visible = true
+				if multiplayer.get_unique_id() == 1:
+					restart_button.visible = true
+		else:
+			$Timer.start()
 	
 	if visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
