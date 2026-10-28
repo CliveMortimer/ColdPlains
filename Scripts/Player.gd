@@ -79,11 +79,12 @@ func _ready():
 func _on_tree_entered() -> void:
 	if Lobby.players.has(name.to_int()):
 		match Lobby.players[(name.to_int())]["id"]:
-			1: spawn_pos = Vector3(40,1,19)
-			2: spawn_pos = Vector3(-32,1,26)
-			3: spawn_pos = Vector3(-31,1,-14)
-			4: spawn_pos = Vector3(40,1,-48)
-		position = spawn_pos
+			1: spawn_pos = Vector3(-26.1,1,-23.9)
+			2: spawn_pos = Vector3(-32,1,20.56)
+			3: spawn_pos = Vector3(36.6,1,-43.7)
+			4: spawn_pos = Vector3(34,1,17.12)
+	position = spawn_pos
+
 
 
 func _exit_tree() -> void:
@@ -212,7 +213,7 @@ func perform_shooting_logic():
 	if raycast.is_colliding():
 		var hit_player = raycast.get_collider()
 		#hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
-		hit_player.request_damage.rpc_id(1)
+		hit_player.request_damage.rpc_id(1, damage, get_multiplayer_authority())
 	
 	if enemy_raycast.is_colliding():
 		enemy_raycast.get_collider().damage_taken += damage
