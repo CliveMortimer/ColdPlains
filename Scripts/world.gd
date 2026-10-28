@@ -2,7 +2,7 @@ extends Node
 
 
 @onready var main_menu = $CanvasLayer/MainMenu
-@onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
+@export var address_entry : LineEdit
 @onready var hud = $CanvasLayer/HUD
 #@onready var health_bar = $CanvasLayer/HUD/HealthBar
 @onready var Player = preload("res://scenes/player.tscn")

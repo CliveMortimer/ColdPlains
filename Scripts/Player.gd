@@ -77,12 +77,13 @@ func _ready():
 
 
 func _on_tree_entered() -> void:
-	match Lobby.players[(name.to_int())]["id"]:
-		1: spawn_pos = Vector3(40,1,19)
-		2: spawn_pos = Vector3(-32,1,26)
-		3: spawn_pos = Vector3(-31,1,-14)
-		4: spawn_pos = Vector3(40,1,-48)
-	position = spawn_pos
+	if Lobby.players.has(name.to_int()):
+		match Lobby.players[(name.to_int())]["id"]:
+			1: spawn_pos = Vector3(40,1,19)
+			2: spawn_pos = Vector3(-32,1,26)
+			3: spawn_pos = Vector3(-31,1,-14)
+			4: spawn_pos = Vector3(40,1,-48)
+		position = spawn_pos
 
 
 func _exit_tree() -> void:
