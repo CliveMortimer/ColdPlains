@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dn22jysuvbbdf" path="res://assets/images/istockphoto-1390352280-612x612.jpg" id="1_xoo1l"]
 [ext_resource type="Texture2D" uid="uid://oh5anap6dnot" path="res://assets/images/istockphoto-1390352280-612x612_specular(1).png" id="2_8t0ot"]
-[ext_resource type="PackedScene" uid="uid://dxb7bg1p06wa8" path="res://scenes/Walls.tscn" id="3_whntf"]
+[ext_resource type="PackedScene" path="res://scenes/Walls.tscn" id="3_whntf"]
 [ext_resource type="PackedScene" uid="uid://qv7ayncd6sh2" path="res://Models/Decrations/rocks_tall.tscn" id="4_w881m"]
 [ext_resource type="PackedScene" uid="uid://dbhnhwkj771dv" path="res://Models/Decrations/rocks.tscn" id="5_w6vqs"]
 [ext_resource type="MeshLibrary" uid="uid://d2i3kxa7cwa27" path="res://librarySource.tres" id="6_kb5rq"]
@@ -73,12 +73,6 @@ is_hemisphere = true
 [sub_resource type="Curve" id="Curve_xoo1l"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15730345, 0.3312102), 0.0, 0.0, 0, 0, Vector2(0.15730345, 0.3312102), 0.0, 0.0, 0, 0, Vector2(0.3312102, 0.15730345), 0.0, 0.0, 0, 0, Vector2(0.3312102, 0.15730345), 0.0, 0.0, 0, 0, Vector2(0.522293, 0.46067423), 0.0, 0.0, 0, 0, Vector2(0.84076434, 1), 0.0, 0.0, 0, 0]
 point_count = 7
-point_1/position = Vector2(0.15730345, 0.3312102)
-point_2/position = Vector2(0.15730345, 0.3312102)
-point_3/position = Vector2(0.3312102, 0.15730345)
-point_4/position = Vector2(0.3312102, 0.15730345)
-point_5/position = Vector2(0.522293, 0.46067423)
-point_6/position = Vector2(0.84076434, 1)
 
 [sub_resource type="CurveTexture" id="CurveTexture_t4cci"]
 curve = SubResource("Curve_xoo1l")
@@ -120,7 +114,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8t0ot")
 shape = SubResource("ConcavePolygonShape3D_xlnmh")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=248993006]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.037406206, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004798889, 0.004727125, 0.05436325)
 mesh = SubResource("SphereMesh_xoo1l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=188042677]
@@ -352,7 +346,7 @@ transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474
 [node name="ItemSpawner" type="Node3D" parent="." unique_id=1988371560]
 script = ExtResource("13_berly")
 item_scene = ExtResource("14_omvro")
-spawn_points = Array[Vector3]([Vector3(5.402, 10.495, 37.305), Vector3(1.671, 10.074, 8.076), Vector3(-12.031, 3.174, 26.207), Vector3(0, 0.2, 0), Vector3(-6.717, 1.274, -28.062), Vector3(-16.151, 0.274, 9.098)])
+spawn_points = Array[Vector3]([Vector3(5.402, 10.495, 37.305), Vector3(1.671, 10.074, 8.076), Vector3(-12.031, 3.174, 26.207), Vector3(0, 0.4, 0), Vector3(5.503, 0.4, 47.7), Vector3(-16.151, 0.4, 9.098)])
 num_items_to_spawn = 6
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=131664864]

@@ -93,5 +93,5 @@ func _reset_item() -> void:
 func _physics_process(delta: float) -> void:
 	time += delta
 	rotate_y(3 * delta)
-	position.y = sin(time * 1.5) * 0.1 + 0.4
+	position.y = sin(time * 1.5) * 0.1 + original_position.y
 	
