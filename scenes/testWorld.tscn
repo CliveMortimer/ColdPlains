@@ -207,11 +207,19 @@ theme_override_constants/margin_bottom = 10
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/HBoxContainer/MarginContainer" unique_id=1301108370]
 layout_mode = 2
 size_flags_vertical = 1
-text = "f to toggle 
+theme_override_font_sizes/font_size = 11
+text = "F to toggle 
 flashlight.
 
-e to pick up
+E to pick up
 items.
+
+Ctrl to slide
+
+C to crouch
+
+H to use item
+to heal
 
 The host can 
 press shift+r 
